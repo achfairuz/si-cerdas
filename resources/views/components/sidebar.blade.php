@@ -93,7 +93,7 @@
                                     : openRecipeCategory = {{ $category->id }}"
                             class="w-full text-left flex justify-between items-center hover:text-green-600 text-base">
 
-                            {{ $category->nama_category ?? '-' }}
+                            {{ $category->name ?? '-' }}
                             <span x-text="openRecipeCategory === {{ $category->id }} ? '-' : '+'"></span>
                         </button>
 
@@ -101,7 +101,8 @@
                             class="ml-4 mt-1 space-y-1 text-sm">
 
                             @forelse ($category->recipes ?? [] as $content)
-                                <a href="" class="block hover:text-green-600">
+                                <a href="{{ route('recipe.show', $content->slug) }}"
+                                    class="block hover:text-green-600">
                                     {{ $content->title }}
                                 </a>
                             @empty

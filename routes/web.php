@@ -27,6 +27,9 @@ Route::get('/', function () {
 
 Route::get('/education/{slug}', [EducationController::class, 'show'])
     ->name('education.show');
+Route::get('/recipe/{slug}', [RecipeController::class, 'show'])
+    ->name('recipe.show');
+
 
 // Route::get('/login', function () {
 //     return view('pages.auth.login');

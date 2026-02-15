@@ -247,4 +247,13 @@ class RecipeController extends Controller
         return redirect()->route('recipes.index')
             ->with('success', 'Resep berhasil dihapus');
     }
+
+    public function show($slug)
+    {
+        $recipe = Recipe::where('slug', $slug)
+            ->with('category', 'ingredients', 'steps', 'nutritions')
+            ->firstOrFail();
+
+        return view('pages.user.recipe.show', compact('recipe'));
+    }
 }
