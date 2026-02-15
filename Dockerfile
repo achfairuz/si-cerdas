@@ -19,11 +19,12 @@ COPY . .
 # Install dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Laravel optimizations
+# Laravel optimizations (optional safe mode)
 RUN php artisan config:cache || true
 RUN php artisan route:cache || true
 RUN php artisan view:cache || true
 
+# Railway will provide $PORT
 EXPOSE 8080
 
-CMD php artisan serve --host=0.0.0.0 --port=8080
+CMD ["sh", "-c", "php -S 0.0.0.0:$PORT -t public"]
