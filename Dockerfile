@@ -23,6 +23,15 @@ RUN composer install --no-dev --optimize-autoloader
 RUN php artisan config:cache || true
 RUN php artisan route:cache || true
 RUN php artisan view:cache || true
+# Create required Laravel folders
+RUN mkdir -p storage/framework/cache \
+    storage/framework/sessions \
+    storage/framework/views \
+    storage/logs \
+    bootstrap/cache
+
+# Set permission
+RUN chmod -R 775 storage bootstrap/cache
 
 # Railway will provide $PORT
 EXPOSE 8080
