@@ -163,7 +163,7 @@
                             Batal
                         </button>
 
-                        <form method="POST" :action="'/admin/education/' + deleteId">
+                        <form method="POST" :action="'/admin/educations/' + deleteId">
                             @csrf
                             @method('DELETE')
 
