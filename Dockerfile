@@ -1,6 +1,5 @@
 FROM php:8.3-cli
 
-# Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -8,32 +7,23 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     && docker-php-ext-install pdo pdo_pgsql
 
-# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
 
-# Copy project
 COPY . .
 
-# Install dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Laravel optimizations (optional safe mode)
-RUN php artisan config:cache || true
-RUN php artisan route:cache || true
-RUN php artisan view:cache || true
-# Create required Laravel folders
+# Create Laravel folders
 RUN mkdir -p storage/framework/cache \
     storage/framework/sessions \
     storage/framework/views \
     storage/logs \
     bootstrap/cache
 
-# Set permission
 RUN chmod -R 775 storage bootstrap/cache
 
-# Railway will provide $PORT
 EXPOSE 8080
 
 CMD ["sh", "-c", "php -S 0.0.0.0:$PORT -t public"]
