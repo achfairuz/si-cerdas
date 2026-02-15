@@ -5,7 +5,7 @@ import vue from "@vitejs/plugin-vue";
 export default defineConfig({
     plugins: [
         laravel({
-            input: "resources/js/app.js",
+            input: ["resources/css/app.css", "resources/js/app.js"],
             ssr: "resources/js/ssr.js",
             refresh: true,
         }),
@@ -19,6 +19,6 @@ export default defineConfig({
         }),
     ],
     ssr: {
-        noExternal: ["vue", "@protonemedia/laravel-splade"]
+        noExternal: ["vue", "@protonemedia/laravel-splade"],
     },
 });
