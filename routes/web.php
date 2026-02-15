@@ -22,13 +22,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages.user.home');
+    $latestRecipe = Recipe::latest()->first();
+    $latestEducation = Education::latest()->first();
+    return view('pages.user.home', compact('latestRecipe', 'latestEducation'));
 })->name('home');
+
+Route::get('/tentang', function () {
+    return view('pages.user.tentang');
+})->name('tentang');
+
 
 Route::get('/education/{slug}', [EducationController::class, 'show'])
     ->name('education.show');
 Route::get('/recipe/{slug}', [RecipeController::class, 'show'])
     ->name('recipe.show');
+
 
 
 // Route::get('/login', function () {

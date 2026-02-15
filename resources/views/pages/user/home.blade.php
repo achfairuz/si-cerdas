@@ -1,162 +1,145 @@
+@php use Illuminate\Support\Str; @endphp
+
 @extends('layouts.layout')
 
 @section('content')
+    {{-- hero --}}
     <section x-data="{
         active: 0,
-        slides: [{
-                title: 'Cegah Stunting Sejak Dini',
-                desc: 'Pencegahan stunting dimulai sejak masa kehamilan melalui asupan gizi yang cukup dan pemeriksaan rutin.'
-            },
-            {
-                title: 'Penuhi Gizi Ibu & Janin',
-                desc: 'Nutrisi yang seimbang membantu pertumbuhan optimal janin dan menjaga kesehatan ibu selama kehamilan.'
-            },
-            {
-                title: 'Pantau Kesehatan Secara Berkala',
-                desc: 'Kontrol kehamilan secara rutin membantu mendeteksi risiko sejak awal dan mencegah komplikasi.'
-            }
+        slides: [
+            { title: '🌱 Cegah Stunting Sejak Dini', desc: 'Pencegahan dimulai sejak masa kehamilan melalui asupan gizi dan pemeriksaan rutin.' },
+            { title: '🥗 Penuhi Gizi Ibu & Janin', desc: 'Nutrisi seimbang membantu pertumbuhan optimal dan menjaga kesehatan ibu.' },
+            { title: '🩺 Pantau Kesehatan Berkala', desc: 'Kontrol rutin membantu mendeteksi risiko sejak awal.' }
         ]
-    }" x-init="setInterval(() => { active = (active + 1) % slides.length }, 4000)" class="relative text-center overflow-hidden">
+    }" x-init="setInterval(() => { active = (active + 1) % slides.length }, 4000)"
+        class="relative text-center overflow-hidden py-20 bg-gradient-to-br from-green-50 to-green-100 rounded-3xl mt-12">
 
-
-        <!-- Slide Container -->
-        <div class="relative h-64 flex items-center justify-center">
+        <div class="relative h-48 flex items-center justify-center">
 
             <template x-for="(slide, index) in slides" :key="index">
                 <div x-show="active === index" x-transition.opacity.duration.700ms
                     class="absolute inset-0 flex flex-col items-center justify-center px-6">
-                    <h2 class="text-3xl font-bold text-green-700 mb-4" x-text="slide.title">
-                    </h2>
 
-                    <p class="text-gray-600 text-lg max-w-xl" x-text="slide.desc">
-                    </p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-green-700 mb-4" x-text="slide.title"></h2>
+                    <p class="text-gray-600 text-lg max-w-xl" x-text="slide.desc"></p>
+
                 </div>
             </template>
 
         </div>
 
-        <!-- Indicator Dots -->
         <div class="flex justify-center space-x-3 mt-6">
             <template x-for="(slide, index) in slides" :key="index">
                 <button @click="active = index" class="w-3 h-3 rounded-full transition"
-                    :class="active === index ? 'bg-green-600 scale-110' : 'bg-gray-300'"></button>
+                    :class="active === index ? 'bg-green-600 scale-125' : 'bg-green-200'">
+                </button>
             </template>
         </div>
 
     </section>
 
-    <section class="mt-16">
 
-        <div class="bg-white rounded-3xl shadow-lg p-8 md:p-12">
+    {{-- Edukasi --}}
+    @if ($latestEducation)
+        <section class="mt-16">
 
-            <div class="flex flex-col md:flex-row items-center gap-10">
+            <div class="bg-white rounded-[40px] shadow-xl p-10 md:p-14">
 
-                <!-- TEXT -->
-                <div class="flex-1 space-y-6">
+                <div class="flex flex-col md:flex-row items-center gap-12">
 
-                    <span class="text-sm font-semibold text-green-600 uppercase tracking-wide">
-                        Pencegahan Dini
-                    </span>
+                    <div class="flex-1 space-y-6">
 
-                    <h3 class="text-3xl md:text-4xl font-bold text-gray-800 leading-snug">
-                        Cegah Stunting Sejak Dalam Kandungan
-                    </h3>
+                        <span class="text-sm font-bold text-pink-500 uppercase tracking-wide">
+                            📚 Edukasi Terbaru
+                        </span>
 
-                    <p class="text-gray-600 text-lg leading-relaxed">
-                        Masa kehamilan adalah periode penting dalam menentukan kualitas tumbuh kembang anak.
-                        Dengan pemenuhan gizi yang cukup dan pemeriksaan rutin, risiko stunting dapat dicegah sejak dini.
+                        <h3 class="text-3xl md:text-4xl font-bold text-gray-800 leading-snug">
+                            {{ $latestEducation->title }}
+                        </h3>
+
+                        <p class="text-gray-600 text-lg leading-relaxed">
+                            {!! Str::limit(strip_tags($latestEducation->description), 180) !!}
+                        </p>
+
+                        <a href="{{ route('education.show', $latestEducation->slug) }}"
+                            class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-2xl font-semibold transition inline-block shadow-md hover:scale-105 transform">
+                            💕 Baca Selengkapnya
+                        </a>
+
+                    </div>
+
+                    <div class="flex-1">
+                        <div class="bg-pink-50 rounded-3xl p-6 flex items-center justify-center shadow-inner">
+                            <img src="{{ $latestEducation->imageUrl }}" class="w-60 md:w-72 object-contain rounded-2xl">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+    @endif
+
+
+    {{-- Resep --}}
+    @if ($latestRecipe)
+        <section class="mt-16">
+
+            <div class="text-center mb-10">
+                <h3 class="text-3xl font-bold text-green-700">
+                    🍲 Menu Sehat Terbaru
+                </h3>
+                <p class="text-gray-600 mt-3">
+                    Rekomendasi menu bergizi untuk ibu & janin
+                </p>
+            </div>
+
+            <div class="bg-white rounded-[40px] shadow-xl overflow-hidden md:flex items-center">
+
+                <div class="md:w-1/2 p-8 flex justify-center">
+                    <img src="{{ $latestRecipe->imageUrl }}"
+                        class="w-full max-w-md h-72 object-cover rounded-3xl shadow-lg hover:scale-105 transition">
+                </div>
+
+                <div class="p-10 md:w-1/2 flex flex-col justify-center space-y-6">
+
+                    <h4 class="text-2xl font-bold text-gray-800">
+                        {{ $latestRecipe->title }}
+                    </h4>
+
+                    <p class="text-gray-600 leading-relaxed">
+                        {{ Str::limit($latestRecipe->description, 180) }}
                     </p>
 
-                    <button
-                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition">
-                        Pelajari Lebih Lanjut
-                    </button>
-
-                </div>
-
-                <!-- IMAGE -->
-                <div class="flex-1">
-                    <div class="bg-green-100 rounded-3xl p-6 flex items-center justify-center">
-                        <img src="/assets//images/illustrasi_ibu_hamil.png" alt="Ibu Hamil"
-                            class="w-60 md:w-72 object-contain">
+                    <div class="flex gap-6 text-sm font-medium text-green-600">
+                        <span>🍽 {{ $latestRecipe->portion }} Porsi</span>
+                        <span>⏱ {{ $latestRecipe->duration }} menit</span>
                     </div>
+
+                    <a href="{{ route('recipe.show', $latestRecipe->slug) }}"
+                        class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-2xl font-semibold transition w-fit shadow-md hover:scale-105 transform">
+                        🌿 Lihat Resep Lengkap
+                    </a>
+
                 </div>
 
             </div>
 
-        </div>
+        </section>
+    @endif
 
-    </section>
 
-    <section class="mt-20">
+
+    {{-- Kalkulator --}}
+    <section class="mt-16 bg-green-50 py-16 rounded-3xl">
 
         <div class="text-center mb-12">
             <h3 class="text-3xl font-bold text-green-700">
-                Rekomendasi Menu Sehat
+                🤰 Kalkulator BMI Ibu Hamil
             </h3>
             <p class="text-gray-600 mt-3">
-                Menu bergizi untuk mendukung kesehatan ibu dan tumbuh kembang janin
-            </p>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-lg overflow-hidden md:flex">
-
-            <!-- IMAGE -->
-            <div class="md:w-1/2">
-                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c" alt="Salad Sehat Ibu Hamil"
-                    class="h-64 md:h-full w-full object-cover">
-            </div>
-
-            <!-- CONTENT -->
-            <div class="p-8 md:w-1/2 flex flex-col justify-center space-y-6">
-
-                <h4 class="text-2xl font-bold text-gray-800">
-                    Salad Sayur & Protein Tinggi
-                </h4>
-
-                <p class="text-gray-600 leading-relaxed">
-                    Kombinasi sayuran hijau, telur rebus, alpukat, dan kacang-kacangan
-                    yang kaya akan zat besi, asam folat, dan protein untuk mendukung
-                    perkembangan janin secara optimal.
-                </p>
-
-                <!-- Nutrisi Info -->
-                <div class="grid grid-cols-3 gap-4 text-center">
-
-                    <div class="bg-green-50 p-4 rounded-xl">
-                        <p class="text-green-700 font-bold text-lg">Zat Besi</p>
-                        <p class="text-sm text-gray-500">Cegah Anemia</p>
-                    </div>
-
-                    <div class="bg-green-50 p-4 rounded-xl">
-                        <p class="text-green-700 font-bold text-lg">Protein</p>
-                        <p class="text-sm text-gray-500">Pertumbuhan Janin</p>
-                    </div>
-
-                    <div class="bg-green-50 p-4 rounded-xl">
-                        <p class="text-green-700 font-bold text-lg">Folat</p>
-                        <p class="text-sm text-gray-500">Perkembangan Otak</p>
-                    </div>
-
-                </div>
-
-                <button class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition">
-                    Lihat Resep Lengkap
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
-    <section class="mt-20">
-
-        <div class="text-center mb-12">
-            <h3 class="text-3xl font-bold text-green-700">
-                Kalkulator Kesehatan Ibu Hamil
-            </h3>
-            <p class="text-gray-600 mt-3">
-                Hitung indeks massa tubuh (BMI) untuk mengetahui rekomendasi kenaikan berat badan selama kehamilan
+                Yuk cek kondisi tubuh sebelum hamil agar kehamilan makin sehat 💚
             </p>
         </div>
 
@@ -166,6 +149,7 @@
             hasil: null,
             kategori: '',
             rekomendasi: '',
+            warna: 'green',
             hitung() {
                 if (!this.berat || !this.tinggi) return;
         
@@ -174,59 +158,77 @@
                 this.hasil = bmi.toFixed(1)
         
                 if (bmi < 18.5) {
-                    this.kategori = 'Berat Badan Kurang'
+                    this.kategori = 'Berat Badan Kurang 😢'
                     this.rekomendasi = 'Rekomendasi kenaikan: 12.5 - 18 kg'
+                    this.warna = 'yellow'
                 } else if (bmi < 25) {
-                    this.kategori = 'Normal'
+                    this.kategori = 'Normal 😊'
                     this.rekomendasi = 'Rekomendasi kenaikan: 11.5 - 16 kg'
+                    this.warna = 'green'
                 } else if (bmi < 30) {
-                    this.kategori = 'Berat Badan Berlebih'
+                    this.kategori = 'Berat Badan Berlebih 😅'
                     this.rekomendasi = 'Rekomendasi kenaikan: 7 - 11.5 kg'
+                    this.warna = 'orange'
                 } else {
-                    this.kategori = 'Obesitas'
+                    this.kategori = 'Obesitas ⚠️'
                     this.rekomendasi = 'Rekomendasi kenaikan: 5 - 9 kg'
+                    this.warna = 'red'
                 }
             }
-        }" class="bg-white rounded-3xl shadow-lg p-8 md:p-12 max-w-3xl mx-auto">
+        }" class="bg-white rounded-[40px] shadow-xl p-10 md:p-14 max-w-3xl mx-auto relative">
+
+            <!-- Cute Decoration -->
+            <div class="absolute -top-6 -right-6 text-6xl opacity-20">
+                💚
+            </div>
 
             <div class="grid md:grid-cols-2 gap-6">
 
                 <div>
                     <label class="block text-gray-700 font-semibold mb-2">
-                        Berat Badan Sebelum Hamil (kg)
+                        ⚖️ Berat Badan (kg)
                     </label>
                     <input type="number" x-model="berat"
-                        class="w-full border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+                        class="w-full border-2 border-green-200 rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400 transition"
                         placeholder="Contoh: 55">
                 </div>
 
                 <div>
                     <label class="block text-gray-700 font-semibold mb-2">
-                        Tinggi Badan (cm)
+                        📏 Tinggi Badan (cm)
                     </label>
                     <input type="number" x-model="tinggi"
-                        class="w-full border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+                        class="w-full border-2 border-green-200 rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400 transition"
                         placeholder="Contoh: 160">
                 </div>
 
             </div>
 
             <button @click="hitung()"
-                class="mt-6 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition w-full">
-                Hitung BMI
+                class="mt-8 bg-gradient-to-r from-green-500 to-green-600 hover:scale-105 transform transition text-white px-6 py-3 rounded-2xl font-bold w-full shadow-md">
+                💚 Hitung Sekarang
             </button>
 
             <!-- RESULT -->
-            <div x-show="hasil" x-transition class="mt-8 bg-green-50 p-6 rounded-2xl text-center space-y-3">
-                <p class="text-lg font-semibold text-gray-700">
-                    BMI Anda:
+            <div x-show="hasil" x-transition.scale.duration.400ms
+                class="mt-10 p-8 rounded-3xl text-center space-y-4 shadow-inner"
+                :class="{
+                    'bg-green-100 text-green-700': warna === 'green',
+                    'bg-yellow-100 text-yellow-700': warna === 'yellow',
+                    'bg-orange-100 text-orange-700': warna === 'orange',
+                    'bg-red-100 text-red-700': warna === 'red'
+                }">
+
+                <p class="text-lg font-semibold">
+                    🎉 Hasil BMI Anda
                 </p>
 
-                <p class="text-4xl font-bold text-green-700" x-text="hasil"></p>
+                <p class="text-5xl font-bold" x-text="hasil"></p>
 
-                <p class="text-gray-700 font-medium" x-text="kategori"></p>
+                <p class="text-lg font-medium" x-text="kategori"></p>
 
-                <p class="text-sm text-gray-600" x-text="rekomendasi"></p>
+                <p class="text-sm opacity-80" x-text="rekomendasi"></p>
+
             </div>
 
         </div>

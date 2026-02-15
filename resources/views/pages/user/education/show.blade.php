@@ -11,60 +11,67 @@
         $youtubeId = $education->link ? getYoutubeId($education->link) : null;
     @endphp
 
-    <div class="bg-gray-50 min-h-screen md:py-14 py-8">
-        <div class="max-w-4xl mx-auto md:px-6">
+    <div class="bg-gradient-to-br from-green-50 via-emerald-50 to-pink-50 min-h-screen md:py-12 py-8">
+        <div class="max-w-4xl mx-auto md:px-4">
 
-            <!-- Breadcrumb -->
-            <div class="text-sm text-gray-500 mb-8">
+            <!-- Breadcrumb Cute -->
+            <div class="text-sm text-gray-500 mb-8 flex items-center gap-2">
                 <a href="{{ route('home') }}" class="hover:text-green-600 transition">
-                    Beranda
+                    🏠 Beranda
                 </a>
-                <span class="mx-2">/</span>
-                <span class="text-gray-700">
+                <span>›</span>
+                <span class="text-gray-700 font-medium">
                     {{ optional($education->category)->name ?? 'Tanpa Kategori' }}
                 </span>
             </div>
 
-            <article class="bg-white rounded-3xl shadow-xl overflow-hidden">
+            <article class="bg-white md:rounded-[40px] rounded-[20px] shadow-2xl overflow-hidden">
 
-                <!-- Hero Image -->
+                <!-- HERO IMAGE -->
                 @if ($education->imageUrl)
-                    <div class="h-80 w-full overflow-hidden">
+                    <div class="h-80 w-full overflow-hidden relative">
                         <img src="{{ $education->imageUrl }}"
                             class="w-full h-full object-cover hover:scale-105 transition duration-500"
                             alt="{{ $education->title }}">
+
+                        <!-- Cute Decoration -->
+                        <div class="absolute top-4 right-4 text-4xl opacity-80">
+                            🌸
+                        </div>
                     </div>
                 @endif
 
-                <div class="p-8 md:p-12">
+                <div class="p-6  md:p-14">
 
-                    <!-- Category Badge -->
-                    <div class="mb-4">
-                        <span class="inline-block bg-green-100 text-green-700 text-sm font-medium px-4 py-1 rounded-full">
-                            {{ optional($education->category)->name ?? 'Tanpa Kategori' }}
+                    <!-- CATEGORY BADGE -->
+                    <div class="mb-6">
+                        <span
+                            class="inline-block bg-pink-100 text-pink-600 text-sm font-semibold px-4 py-2 rounded-full shadow-sm">
+                            📚 {{ optional($education->category)->name ?? 'Tanpa Kategori' }}
                         </span>
                     </div>
 
-                    <!-- Title -->
-                    <h1 class="text-4xl font-bold text-gray-800 leading-tight mb-4">
-                        {{ $education->title }}
+                    <!-- TITLE -->
+                    <h1 class="text-4xl font-bold text-gray-800 leading-snug mb-6">
+                        💕 {{ $education->title }}
                     </h1>
 
-                    <!-- Meta Info -->
-                    <div class="text-sm text-gray-500 mb-8 flex items-center gap-4">
-                        <span>
-                            Terakhir diperbarui:
-                            {{ $education->updated_at->format('d M Y') }}
-                        </span>
+                    <!-- META -->
+                    <div class="text-sm text-gray-500 mb-10 bg-green-50 p-4 rounded-2xl">
+                        📅 Terakhir diperbarui:
+                        {{ $education->updated_at->format('d M Y') }}
                     </div>
 
-                    <!-- Divider -->
-                    <div class="w-16 h-1 bg-green-600 rounded-full mb-10"></div>
+                    <!-- Divider Cute -->
+                    <div class="flex justify-center mb-12">
+                        <div class="w-24 h-1 bg-gradient-to-r from-pink-400 via-green-400 to-emerald-500 rounded-full">
+                        </div>
+                    </div>
 
-                    <!-- YouTube Embed -->
+                    <!-- YOUTUBE -->
                     @if ($youtubeId)
                         <div class="mb-12">
-                            <div class="relative w-full rounded-2xl overflow-hidden shadow-lg" style="padding-top: 56.25%;">
+                            <div class="relative w-full rounded-3xl overflow-hidden shadow-xl" style="padding-top: 56.25%;">
                                 <iframe src="https://www.youtube.com/embed/{{ $youtubeId }}"
                                     class="absolute top-0 left-0 w-full h-full"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -73,30 +80,33 @@
                             </div>
                         </div>
                     @elseif($education->link)
-                        <div class="mb-10">
+                        <div class="mb-12 text-center">
                             <a href="{{ $education->link }}" target="_blank"
-                                class="inline-flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-xl shadow hover:bg-green-700 transition">
-                                Buka Link Sumber
+                                class="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-2xl shadow-md transition hover:scale-105 transform">
+                                🔗 Buka Link Sumber
                             </a>
                         </div>
                     @endif
 
-                    <!-- Content -->
+                    <!-- CONTENT -->
                     <div
                         class="prose prose-lg max-w-none 
-                            prose-headings:text-green-700
-                            prose-a:text-green-600
-                            prose-strong:text-gray-800
-                            prose-li:marker:text-green-600">
+                    prose-headings:text-green-700
+                    prose-a:text-green-600
+                    prose-strong:text-gray-800
+                    prose-li:marker:text-green-500
+                    prose-p:leading-relaxed">
+
                         {!! $education->description !!}
                     </div>
 
                 </div>
             </article>
 
-            <!-- Back Button -->
-            <div class="mt-10">
-                <a href="{{ url()->previous() }}" class="text-green-600 hover:underline font-medium">
+            <!-- BACK BUTTON -->
+            <div class="mt-12 text-center">
+                <a href="{{ url()->previous() }}"
+                    class="inline-block bg-white px-6 py-3 rounded-full shadow-md text-green-600 font-semibold hover:scale-105 transition">
                     ← Kembali
                 </a>
             </div>
