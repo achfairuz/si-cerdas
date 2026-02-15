@@ -68,7 +68,7 @@
                                 <x-admin.badge :type="$category->type" />
                             </td>
 
-                            <td class="px-4 py-3 text-center space-x-2 mb-2 lg:mb-0">
+                            <td class="px-4 py-3 text-center space-x-2 ">
 
                                 <a href="{{ route('categories.edit', $category->id) }}">
                                     <x-admin.button color="yellow">

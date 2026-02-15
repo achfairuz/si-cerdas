@@ -87,7 +87,7 @@
                             </td>
 
                             <td class="px-4 py-3 space-x-2 text-center">
-                                <a href="{{ route('educations.edit', $item->id) }}">
+                                <a href="{{ route('educations.edit', $item->id) }}" class="mb-2 lg:mb-0">
                                     <x-admin.button color="yellow">Edit</x-admin.button>
                                 </a>
 
