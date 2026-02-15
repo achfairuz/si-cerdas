@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Recipe extends Model
 {
@@ -14,6 +15,7 @@ class Recipe extends Model
         'title',
         'imageUrl',
         'portion',
+        'slug',
         'duration',
         'description',
         'category_id'
@@ -39,5 +41,28 @@ class Recipe extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($education) {
+            $education->slug = static::generateUniqueSlug($education->title);
+        });
+
+        static::updating(function ($education) {
+            if ($education->isDirty('title')) {
+                $education->slug = static::generateUniqueSlug($education->title);
+            }
+        });
+    }
+
+    private static function generateUniqueSlug($title)
+    {
+        $slug = Str::slug($title);
+        $count = static::where('slug', 'like', "{$slug}%")->count();
+
+        return $count ? "{$slug}-{$count}" : $slug;
     }
 }

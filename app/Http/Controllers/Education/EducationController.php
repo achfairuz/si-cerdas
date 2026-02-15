@@ -125,4 +125,13 @@ class EducationController extends Controller
             ->route('educations.index')
             ->with('success', 'Edukasi berhasil dihapus');
     }
+
+    public function show($slug)
+    {
+        $education = Education::where('slug', $slug)
+            ->with('category')
+            ->firstOrFail();
+
+        return view('pages.user.education.show', compact('education'));
+    }
 }

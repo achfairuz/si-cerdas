@@ -19,7 +19,7 @@ class Category extends Model
     {
         return $this->hasMany(Recipe::class);
     }
-    public function educationn()
+    public function educations()
     {
         return $this->hasMany(Education::class);
     }

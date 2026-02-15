@@ -25,9 +25,8 @@ Route::get('/', function () {
     return view('pages.user.home');
 })->name('home');
 
-Route::get('/docs', function () {
-    return view('pages.docs');
-})->name('docs');
+Route::get('/education/{slug}', [EducationController::class, 'show'])
+    ->name('education.show');
 
 // Route::get('/login', function () {
 //     return view('pages.auth.login');
