@@ -1,8 +1,8 @@
 @extends('layouts.layout')
 
 @section('content')
-    <div class="bg-gradient-to-br from-green-50 to-emerald-100 min-h-screen py-14">
-        <div class="max-w-5xl mx-auto px-6">
+    <div class="bg-gradient-to-br from-green-50 to-emerald-100 min-h-screen md:py-14 py-8">
+        <div class="max-w-5xl mx-auto md:px-6 ">
 
             <!-- Card Utama -->
             <div class="bg-white rounded-3xl shadow-xl overflow-hidden">

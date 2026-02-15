@@ -76,7 +76,7 @@
                 </h1>
 
 
-                <img src="assets/images/logo.png" class="w-12" alt="Logo">
+                <img src="{{ asset('assets/images/logo.png') }}" class="w-12" alt="Logo">
 
 
             </div>

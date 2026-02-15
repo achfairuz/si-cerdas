@@ -11,8 +11,8 @@
         $youtubeId = $education->link ? getYoutubeId($education->link) : null;
     @endphp
 
-    <div class="bg-gray-50 min-h-screen py-14">
-        <div class="max-w-4xl mx-auto px-6">
+    <div class="bg-gray-50 min-h-screen md:py-14 py-8">
+        <div class="max-w-4xl mx-auto md:px-6">
 
             <!-- Breadcrumb -->
             <div class="text-sm text-gray-500 mb-8">

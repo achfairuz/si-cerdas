@@ -12,7 +12,8 @@
 
     <!-- Header -->
     <div class="p-6 border-b flex flex-row items-center gap-2">
-        <img src="assets/images/logo.png" class="w-8" alt="Logo">
+        <img src="{{ asset('assets/images/logo.png') }}" class="w-8" alt="Logo">
+
         <h2 class="text-xl font-bold text-green-700">
             Si Cerdas
         </h2>
