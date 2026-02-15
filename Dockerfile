@@ -24,18 +24,20 @@ RUN composer install --no-dev --optimize-autoloader
 # Install Node dependencies
 RUN npm install
 
-# Build Vite assets (INI YANG PENTING)
+# Build Vite assets
 RUN npm run build
 
-# Create Laravel folders
+# Create required Laravel folders
 RUN mkdir -p storage/framework/cache \
     storage/framework/sessions \
     storage/framework/views \
     storage/logs \
     bootstrap/cache
 
+# Set permission
 RUN chmod -R 775 storage bootstrap/cache
 
+# Railway will provide $PORT
 EXPOSE 8080
 
 CMD ["sh", "-c", "php -S 0.0.0.0:$PORT -t public"]
