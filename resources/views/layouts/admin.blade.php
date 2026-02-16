@@ -57,7 +57,7 @@
 
 
                     @if (session('photo'))
-                        <img src="{{ asset(session('photo')) }}" class="w-8  object-cover">
+                        <img src="{{ asset(session('photo')) }}" class="w-8 h-8 rounded-full object-cover">
                     @else
                         <div
                             class="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center bg-green-600 text-white text-sm font-bold">

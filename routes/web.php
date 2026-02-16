@@ -78,3 +78,4 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/login', [LoginController::class, 'showLogin'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.process');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

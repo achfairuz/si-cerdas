@@ -7,6 +7,9 @@
     <title>Login - Si Cerdas</title>
 
     @vite('resources/css/app.css')
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
 </head>
 
 <body class="min-h-screen bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
