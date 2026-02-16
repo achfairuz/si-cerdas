@@ -86,9 +86,9 @@ class EducationController extends Controller
         if ($request->hasFile('image')) {
 
             // 🔥 Hapus gambar lama dari Cloudinary
-            if ($education->public_id) {
-                CloudinaryHelper::delete($education->public_id);
-            }
+            // if ($education->public_id) {
+            //     CloudinaryHelper::delete($education->public_id);
+            // }
 
             $upload = CloudinaryHelper::upload(
                 $request->file('image'),
@@ -115,9 +115,9 @@ class EducationController extends Controller
         $education = Education::findOrFail($id);
 
         // 🔥 Hapus gambar dari Cloudinary
-        if ($education->public_id) {
-            CloudinaryHelper::delete($education->public_id);
-        }
+        // if ($education->public_id) {
+        //     CloudinaryHelper::delete($education->public_id);
+        // }
 
         $education->delete();
 

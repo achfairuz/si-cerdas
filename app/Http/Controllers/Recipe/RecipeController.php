@@ -169,9 +169,9 @@ class RecipeController extends Controller
             if ($request->hasFile('image')) {
 
                 // 🔥 Hapus gambar lama di Cloudinary
-                if ($recipe->public_id) {
-                    CloudinaryHelper::delete($recipe->public_id);
-                }
+                // if ($recipe->public_id) {
+                //     CloudinaryHelper::delete($recipe->public_id);
+                // }
 
                 $upload = CloudinaryHelper::upload(
                     $request->file('image'),
@@ -238,9 +238,9 @@ class RecipeController extends Controller
     {
         $recipe = Recipe::findOrFail($id);
 
-        if ($recipe->public_id) {
-            CloudinaryHelper::delete($recipe->public_id);
-        }
+        // if ($recipe->public_id) {
+        //     CloudinaryHelper::delete($recipe->public_id);
+        // }
 
         $recipe->delete();
 

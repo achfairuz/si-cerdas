@@ -68,10 +68,10 @@ class CategoryController extends Controller
 
         if ($request->hasFile('image')) {
 
-            // 🔥 Hapus gambar lama di Cloudinary
-            if ($category->public_id) {
-                CloudinaryHelper::delete($category->public_id);
-            }
+            // // 🔥 Hapus gambar lama di Cloudinary
+            // if ($category->public_id) {
+            //     CloudinaryHelper::delete($category->public_id);
+            // }
 
             $upload = CloudinaryHelper::upload(
                 $request->file('image'),
@@ -92,9 +92,9 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         // 🔥 Hapus gambar dari Cloudinary
-        if ($category->public_id) {
-            CloudinaryHelper::delete($category->public_id);
-        }
+        // if ($category->public_id) {
+        //     CloudinaryHelper::delete($category->public_id);
+        // }
 
         $category->delete();
 
