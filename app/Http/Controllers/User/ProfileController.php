@@ -36,9 +36,9 @@ class ProfileController extends Controller
         if ($request->hasFile('photo')) {
 
             // 🔥 Hapus foto lama di Cloudinary
-            if ($user->public_id) {
-                CloudinaryHelper::delete($user->public_id);
-            }
+            // if ($user->public_id) {
+            //     CloudinaryHelper::delete($user->public_id);
+            // }
 
             $upload = CloudinaryHelper::upload(
                 $request->file('photo'),

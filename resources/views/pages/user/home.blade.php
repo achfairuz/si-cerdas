@@ -132,8 +132,7 @@
 
 
     {{-- Kalkulator --}}
-    <section class="mt-16 bg-green-50 py-16 rounded-3xl">
-
+    {{-- <section class="mt-16 bg-green-50 py-16 rounded-3xl">
         <div class="text-center mb-12">
             <h3 class="text-3xl font-bold text-green-700">
                 🤰 Kalkulator BMI Ibu Hamil
@@ -233,5 +232,208 @@
 
         </div>
 
+    </section> --}}
+
+    <section class="py-24 bg-gradient-to-br from-emerald-100 via-green-50 to-teal-100 relative overflow-hidden mt-4">
+
+        <!-- Decorative Blur -->
+        <div class="absolute -top-20 -left-20 w-72 h-72 bg-emerald-300 opacity-30 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-20 -right-20 w-72 h-72 bg-teal-300 opacity-30 rounded-full blur-3xl"></div>
+
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+
+            <!-- Heading -->
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-emerald-700">
+                    🩺 Kalkulator Status Gizi (LILA)
+                </h2>
+                <p class="mt-4 text-gray-600 max-w-2xl mx-auto text-lg">
+                    Yuk cek status gizi dengan cepat dan mudah 💚
+                </p>
+            </div>
+
+            <div x-data="kalkulatorLila()" class="grid md:grid-cols-2 gap-12 items-start">
+
+                <!-- LEFT SIDE -->
+                <div class="space-y-8">
+
+                    <!-- FORM CARD -->
+                    <div class="bg-white p-8 rounded-3xl shadow-xl border border-emerald-200">
+
+                        <div class="space-y-6">
+
+                            <div>
+                                <label class="font-semibold text-gray-700 flex items-center gap-2">
+                                    🎂 Usia (tahun)
+                                </label>
+                                <input type="number" step="0.1" x-model="usia"
+                                    class="w-full mt-3 p-4 rounded-xl border focus:ring-2 focus:ring-emerald-400 shadow-sm">
+                            </div>
+
+                            <div>
+                                <label class="font-semibold text-gray-700 flex items-center gap-2">
+                                    📏 LILA Aktual (cm)
+                                </label>
+                                <input type="number" step="0.1" x-model="lilaAktual"
+                                    class="w-full mt-3 p-4 rounded-xl border focus:ring-2 focus:ring-emerald-400 shadow-sm">
+                            </div>
+
+                            <button @click="hitung()"
+                                class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:scale-105 text-white font-bold py-3 rounded-xl shadow-lg transition">
+                                🚀 Hitung Sekarang
+                            </button>
+
+                        </div>
+                    </div>
+
+                    <!-- STANDAR CARD -->
+                    <div class="bg-white p-8 rounded-3xl shadow-xl border border-emerald-200">
+
+                        <h4 class="font-bold text-emerald-700 mb-6 text-lg">
+                            📊 Standar LILA Berdasarkan Usia
+                        </h4>
+
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+
+                            <div class="bg-emerald-50 p-3 rounded-xl flex justify-between">
+                                <span>16–16,9</span>
+                                <span class="font-semibold">25,8 cm</span>
+                            </div>
+
+                            <div class="bg-emerald-50 p-3 rounded-xl flex justify-between">
+                                <span>17–17,9</span>
+                                <span class="font-semibold">26,9 cm</span>
+                            </div>
+
+                            <div class="bg-emerald-50 p-3 rounded-xl flex justify-between">
+                                <span>18–18,9</span>
+                                <span class="font-semibold">25,7 cm</span>
+                            </div>
+
+                            <div class="bg-emerald-50 p-3 rounded-xl flex justify-between">
+                                <span>19–24,9</span>
+                                <span class="font-semibold">26,5 cm</span>
+                            </div>
+
+                            <div class="bg-emerald-50 p-3 rounded-xl flex justify-between">
+                                <span>25–44,9</span>
+                                <span class="font-semibold">27,7 cm</span>
+                            </div>
+
+                            <div class="bg-emerald-50 p-3 rounded-xl flex justify-between">
+                                <span>45–54,9</span>
+                                <span class="font-semibold">29,0 cm</span>
+                            </div>
+
+                            <div class="bg-emerald-50 p-3 rounded-xl flex justify-between col-span-2">
+                                <span>55–69,9</span>
+                                <span class="font-semibold">30,3 cm</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- RIGHT SIDE OUTPUT -->
+                <div class="bg-white p-10 rounded-3xl shadow-2xl border border-emerald-200 text-center"
+                    x-show="hasil !== null" x-transition:enter="transition ease-out duration-500"
+                    x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+
+                    <h3 class="text-2xl font-bold text-gray-700 mb-6">
+                        🎉 Hasil Perhitungan
+                    </h3>
+
+                    <div class="text-6xl font-extrabold text-emerald-600 mb-6" x-text="hasil + '%'">
+                    </div>
+
+                    <!-- Progress -->
+                    <div class="w-full bg-gray-200 rounded-full h-4 mb-6 overflow-hidden">
+                        <div class="h-4 rounded-full transition-all duration-700" :style="'width: ' + hasil + '%'"
+                            :class="warnaBg">
+                        </div>
+                    </div>
+
+                    <div class="text-2xl font-bold mb-4" :class="warnaStatus" x-text="emoji + ' ' + status">
+                    </div>
+
+                    <div class="bg-emerald-50 rounded-xl p-4 text-sm text-gray-600">
+                        Rumus: (LILA Aktual / LILA Standar) × 100%
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
     </section>
 @endsection
+
+<script>
+    function kalkulatorLila() {
+        return {
+            usia: '',
+            lilaAktual: '',
+            hasil: null,
+            status: '',
+            warnaStatus: '',
+            warnaBg: '',
+            emoji: '',
+            standar: null,
+
+            getStandarLila() {
+                let u = parseFloat(this.usia);
+
+                if (u >= 16 && u < 17) return 25.8;
+                if (u >= 17 && u < 18) return 26.9;
+                if (u >= 18 && u < 19) return 25.7;
+                if (u >= 19 && u < 25) return 26.5;
+                if (u >= 25 && u < 45) return 27.7;
+                if (u >= 45 && u < 55) return 29.0;
+                if (u >= 55 && u <= 69.9) return 30.3;
+
+                return null;
+            },
+
+            hitung() {
+                let standar = this.getStandarLila();
+                this.standar = standar;
+
+                if (!standar || !this.lilaAktual) {
+                    alert("Data tidak valid!");
+                    return;
+                }
+
+                let persen = (this.lilaAktual / standar) * 100;
+                this.hasil = persen.toFixed(1);
+
+                if (persen > 120) {
+                    this.status = "Obesitas";
+                    this.emoji = "🔴";
+                    this.warnaStatus = "text-red-600";
+                    this.warnaBg = "bg-red-500";
+                } else if (persen >= 110) {
+                    this.status = "Overweight";
+                    this.emoji = "🟠";
+                    this.warnaStatus = "text-orange-500";
+                    this.warnaBg = "bg-orange-500";
+                } else if (persen >= 84) {
+                    this.status = "Gizi Baik";
+                    this.emoji = "🟢";
+                    this.warnaStatus = "text-green-600";
+                    this.warnaBg = "bg-green-500";
+                } else if (persen >= 70) {
+                    this.status = "Gizi Kurang";
+                    this.emoji = "🟡";
+                    this.warnaStatus = "text-yellow-500";
+                    this.warnaBg = "bg-yellow-400";
+                } else {
+                    this.status = "Gizi Buruk";
+                    this.emoji = "⚠️";
+                    this.warnaStatus = "text-red-700";
+                    this.warnaBg = "bg-red-700";
+                }
+            }
+        }
+    }
+</script>
