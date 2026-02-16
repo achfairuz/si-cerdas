@@ -264,7 +264,7 @@
 
                             <div>
                                 <label class="font-semibold text-gray-700 flex items-center gap-2">
-                                    🎂 Usia (tahun)
+                                    🎂 LILA standar sesuai usia (cm)
                                 </label>
                                 <input type="number" step="0.1" x-model="usia"
                                     class="w-full mt-3 p-4 rounded-xl border focus:ring-2 focus:ring-emerald-400 shadow-sm">
