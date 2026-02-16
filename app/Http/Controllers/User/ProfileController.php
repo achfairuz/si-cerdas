@@ -46,7 +46,7 @@ class ProfileController extends Controller
             );
 
             $user->photo = $upload['url'];
-            $user->public_id = $upload['public_id'];
+            // $user->public_id = $upload['public_id'];
         }
 
         $user->username = $request->username;

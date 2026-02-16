@@ -29,7 +29,7 @@ class CategoryController extends Controller
         ]);
 
         $imageUrl = null;
-        $publicId = null;
+        // $publicId = null;
 
         if ($request->hasFile('image')) {
             $upload = CloudinaryHelper::upload(
@@ -38,14 +38,14 @@ class CategoryController extends Controller
             );
 
             $imageUrl = $upload['url'];
-            $publicId = $upload['public_id'];
+            // $publicId = $upload['public_id'];
         }
 
         Category::create([
             'name' => $request->name,
             'type' => $request->type,
             'imageUrl' => $imageUrl,
-            'public_id' => $publicId,
+            // 'public_id' => $publicId,
         ]);
 
         return redirect('admin/categories')

@@ -46,7 +46,7 @@ class EducationController extends Controller
             );
 
             $imageUrl = $upload['url'];
-            $publicId = $upload['public_id'];
+            // $publicId = $upload['public_id'];
         }
 
         Education::create([
@@ -54,7 +54,7 @@ class EducationController extends Controller
             'description' => $request->description,
             'category_id' => $request->category_id,
             'imageUrl' => $imageUrl,
-            'public_id' => $publicId,
+            // 'public_id' => $publicId,
             'link' => $request->link
         ]);
 
@@ -96,7 +96,7 @@ class EducationController extends Controller
             );
 
             $education->imageUrl = $upload['url'];
-            $education->public_id = $upload['public_id'];
+            // $education->public_id = $upload['public_id'];
         }
 
         $education->title = $request->title;

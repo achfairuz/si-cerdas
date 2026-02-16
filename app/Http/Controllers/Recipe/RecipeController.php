@@ -56,7 +56,7 @@ class RecipeController extends Controller
         DB::transaction(function () use ($request) {
 
             $imageUrl = null;
-            $publicId = null;
+            // $publicId = null;
 
             if ($request->hasFile('image')) {
                 $upload = CloudinaryHelper::upload(
@@ -65,7 +65,7 @@ class RecipeController extends Controller
                 );
 
                 $imageUrl = $upload['url'];
-                $publicId = $upload['public_id'];
+                // $publicId = $upload['public_id'];
             }
 
             $recipe = Recipe::create([
@@ -75,7 +75,7 @@ class RecipeController extends Controller
                 'duration' => $request->duration,
                 'description' => $request->description,
                 'imageUrl' => $imageUrl,
-                'public_id' => $publicId,
+                // 'public_id' => $publicId,
             ]);
 
             // INGREDIENTS
@@ -179,7 +179,7 @@ class RecipeController extends Controller
                 );
 
                 $recipe->imageUrl = $upload['url'];
-                $recipe->public_id = $upload['public_id'];
+                // $recipe->public_id = $upload['public_id'];
             }
 
             $recipe->title = $request->title;
