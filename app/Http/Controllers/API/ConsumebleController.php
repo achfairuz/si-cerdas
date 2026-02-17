@@ -43,7 +43,7 @@ class ConsumebleController extends Controller
         }
     }
 
-    public function detailEducation($slug)
+    public function detailEducation(string $slug)
     {
         try {
             $education = Education::where('slug', $slug)->first();
@@ -83,7 +83,7 @@ class ConsumebleController extends Controller
         }
     }
 
-    public function detailRecipe($slug)
+    public function detailRecipe(string $slug)
     {
         try {
             $recipe = Recipe::where('slug', $slug)->first();
