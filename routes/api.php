@@ -22,5 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('category/{type}', [ConsumebleController::class, 'category']);
 Route::get('education/{categoryId}', [ConsumebleController::class, 'educationByCategory']);
 Route::get('recipe/{categoryId}', [ConsumebleController::class, 'RecipeByCategory']);
-Route::get('education/{slug}', [ConsumebleController::class, 'detailEducation']);
-Route::get('recipe/{slug}', [ConsumebleController::class, 'detailRecipe']);
+Route::get('detail-education/{slug}', [ConsumebleController::class, 'detailEducation']);
+Route::get('detail-recipe/{slug}', [ConsumebleController::class, 'detailRecipe']);
