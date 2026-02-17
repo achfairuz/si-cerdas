@@ -57,8 +57,8 @@
                             {{ $latestEducation->title }}
                         </h3>
 
-                        <p class="text-gray-600 text-lg leading-relaxed">
-                            {!! Str::limit(strip_tags($latestEducation->description), 180) !!}
+                        <p class="text-gray-600 text-lg leading-relaxed break-words line-clamp-4">
+                            {{ Str::limit(strip_tags(preg_replace('/https?:\/\/\S+/', '', $latestEducation->description)), 180) }}
                         </p>
 
                         <a href="{{ route('education.show', $latestEducation->slug) }}"
