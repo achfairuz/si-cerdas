@@ -86,11 +86,11 @@ class ConsumebleController extends Controller
     public function detailRecipe(string $slug)
     {
         try {
-            $recipe = Recipe::where('slug', $slug)->first();
+            $recipe = Recipe::where('slug', $slug)->with('category', 'ingredients', 'steps', 'nutritions')->first();
             if (!$recipe) {
                 return response()->json([
                     'status' => 'error',
-                    'message' => 'Education not found'
+                    'message' => 'Recipe not found'
                 ]);
             }
             return response()->json([
