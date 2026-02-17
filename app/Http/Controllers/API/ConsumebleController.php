@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class ConsumebleController extends Controller
 {
-    public function categoory(string $type)
+    public function category(string $type)
     {
         try {
             $categories = Category::where('type', $type)->get();
