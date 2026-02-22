@@ -95,7 +95,7 @@
                     prose-a:text-green-600
                     prose-strong:text-gray-800
                     prose-li:marker:text-green-500
-                    prose-p:leading-relaxed">
+                    prose-p:leading-relaxed text-justify">
 
                         {!! $education->description !!}
                     </div>
