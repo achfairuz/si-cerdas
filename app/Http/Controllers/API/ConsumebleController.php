@@ -13,7 +13,19 @@ class ConsumebleController extends Controller
     public function category(string $type)
     {
         try {
-            $categories = Category::where('type', $type)->get();
+
+            $query = Category::where('type', $type);
+
+            if ($type === 'education') {
+                $query->whereHas('educations');
+            }
+
+            if ($type === 'recipe') {
+                $query->whereHas('recipes');
+            }
+
+            $categories = $query->get();
+
             return response()->json([
                 'status' => 'success',
                 'data' => $categories
@@ -22,7 +34,7 @@ class ConsumebleController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => $th->getMessage()
-            ]);
+            ], 500);
         }
     }
 
