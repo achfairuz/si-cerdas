@@ -233,51 +233,66 @@
         </div>
 
     </section> --}}
-    <section class="py-24 bg-gradient-to-br from-emerald-100 via-green-50 to-teal-100 relative overflow-hidden mt-4">
+    <section
+        class="py-14 md:py-24 bg-gradient-to-br from-emerald-100 via-green-50 to-teal-100 relative overflow-hidden mt-4">
 
         <!-- Decorative Blur -->
-        <div class="absolute -top-20 -left-20 w-72 h-72 bg-emerald-300 opacity-30 rounded-full blur-3xl"></div>
-        <div class="absolute -bottom-20 -right-20 w-72 h-72 bg-teal-300 opacity-30 rounded-full blur-3xl"></div>
+        <div class="absolute -top-20 -left-20 w-48 h-48 md:w-72 md:h-72 bg-emerald-300 opacity-30 rounded-full blur-3xl">
+        </div>
+        <div class="absolute -bottom-20 -right-20 w-48 h-48 md:w-72 md:h-72 bg-teal-300 opacity-30 rounded-full blur-3xl">
+        </div>
 
-        <div class="max-w-6xl mx-auto px-6 relative z-10">
+        <div class="max-w-md md:max-w-6xl mx-auto px-4 md:px-6 relative z-10">
 
             <!-- Heading -->
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-extrabold text-emerald-700">
+            <div class="text-center mb-10 md:mb-16">
+                <h2 class="text-2xl md:text-5xl font-extrabold text-emerald-700">
                     🩺 Kalkulator Status Gizi (LILA)
                 </h2>
-                <p class="mt-4 text-gray-600 max-w-2xl mx-auto text-lg">
+                <p class="mt-3 md:mt-4 text-gray-600 text-sm md:text-lg">
                     Yuk cek status gizi dengan cepat dan mudah 💚
                 </p>
             </div>
 
-            <div x-data="kalkulatorLila()" class="grid md:grid-cols-2 gap-12 items-start">
+            <div x-data="kalkulatorLila()" class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
 
                 <!-- LEFT SIDE -->
-                <div class="space-y-8">
+                <div class="space-y-6 md:space-y-8">
 
                     <!-- FORM -->
-                    <div class="bg-white p-8 rounded-3xl shadow-xl border border-emerald-200">
-                        <div class="space-y-6">
+                    <div
+                        class="bg-white p-5 md:p-8 rounded-2xl md:rounded-3xl shadow-lg md:shadow-xl border border-emerald-200">
 
+                        <div class="space-y-5 md:space-y-6">
+
+                            <!-- DROPDOWN -->
                             <div>
-                                <label class="font-semibold text-gray-700 flex items-center gap-2">
-                                    🎂 LILA standar sesuai usia (cm)
+                                <label class="font-semibold text-gray-700 flex items-center gap-2 text-sm md:text-base">
+                                    🎂 LILA standar sesuai usia (tahun)
                                 </label>
-                                <input type="number" step="0.1" x-model="usia"
-                                    class="w-full mt-3 p-4 rounded-xl border focus:ring-2 focus:ring-emerald-400 shadow-sm">
+
+                                <select x-model="usia" @change="pilihDariDropdown()"
+                                    class="w-full mt-2 md:mt-3 p-3 md:p-4 rounded-xl border focus:ring-2 focus:ring-emerald-400 text-sm md:text-base">
+                                    <option value="">-- Pilih Usia (Tahun) --</option>
+
+                                    <template x-for="item in daftarStandar" :key="item.min">
+                                        <option :value="item.min" x-text="item.label + ' Tahun'">
+                                        </option>
+                                    </template>
+                                </select>
                             </div>
 
+                            <!-- LILA AKTUAL -->
                             <div>
-                                <label class="font-semibold text-gray-700 flex items-center gap-2">
+                                <label class="font-semibold text-gray-700 flex items-center gap-2 text-sm md:text-base">
                                     📏 LILA Aktual (cm)
                                 </label>
                                 <input type="number" step="0.1" x-model="lilaAktual"
-                                    class="w-full mt-3 p-4 rounded-xl border focus:ring-2 focus:ring-emerald-400 shadow-sm">
+                                    class="w-full mt-2 md:mt-3 p-3 md:p-4 rounded-xl border focus:ring-2 focus:ring-emerald-400 text-sm md:text-base">
                             </div>
 
                             <button @click="hitung()"
-                                class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:scale-105 text-white font-bold py-3 rounded-xl shadow-lg transition">
+                                class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:scale-105 text-white font-bold py-3 md:py-3 rounded-xl shadow-md md:shadow-lg transition text-sm md:text-base">
                                 🚀 Hitung Sekarang
                             </button>
 
@@ -285,32 +300,29 @@
                     </div>
 
                     <!-- STANDAR CARD -->
-                    <div class="bg-white p-8 rounded-3xl shadow-xl border border-emerald-200">
+                    <div
+                        class="bg-white p-5 md:p-8 rounded-2xl md:rounded-3xl shadow-lg md:shadow-xl border border-emerald-200">
 
-                        <h4 class="font-bold text-emerald-700 mb-2 text-lg">
+                        <h4 class="font-bold text-emerald-700 mb-2 md:mb-2 text-base md:text-lg">
                             📊 Standar LILA Berdasarkan Usia
                         </h4>
 
-                        <!-- Keterangan klik -->
-                        <p class="text-sm text-gray-500 mb-6 flex items-center gap-2">
-                            👉 Klik salah satu rentang usia untuk memilih standar otomatis
+                        <p class="text-xs md:text-sm text-gray-500 mb-4 md:mb-6">
+                            👉 Klik rentang usia untuk memilih otomatis
                         </p>
 
-                        <div class="grid grid-cols-2 gap-4 text-sm">
+                        <!-- MOBILE RAPAT, DESKTOP TETAP LEGA -->
+                        <div class="grid grid-cols-2 gap-3 md:gap-4 text-xs md:text-sm">
 
                             <template x-for="item in daftarStandar" :key="item.min">
-                                <div class="bg-emerald-50 p-3 rounded-xl flex justify-between items-center
-                        cursor-pointer hover:bg-emerald-100 hover:scale-105
-                        transition duration-200"
-                                    :class="usia >= item.min && usia < item.max ?
+                                <div class="bg-emerald-50 p-3 md:p-4 rounded-xl flex flex-col md:flex-row md:justify-between items-center text-center md:text-left cursor-pointer hover:bg-emerald-100 transition"
+                                    :class="usia == item.min ?
                                         'ring-2 ring-emerald-400 bg-emerald-100' : ''"
                                     @click="pilihStandar(item)">
 
-                                    <span class="flex items-center gap-1">
-                                        <span x-text="item.label"></span>
-                                    </span>
+                                    <div class="font-medium" x-text="item.label + ' Tahun'"></div>
 
-                                    <span class="font-semibold" x-text="item.nilai + ' cm'"></span>
+                                    <div class="font-bold text-emerald-700 mt-1 md:mt-0" x-text="item.nilai + ' cm'"></div>
 
                                 </div>
                             </template>
@@ -321,25 +333,287 @@
                 </div>
 
                 <!-- RIGHT SIDE OUTPUT -->
-                <div class="bg-white p-10 rounded-3xl shadow-2xl border border-emerald-200 text-center"
+                <div class="bg-white p-6 md:p-10 rounded-2xl md:rounded-3xl shadow-lg md:shadow-2xl border border-emerald-200 text-center"
                     x-show="hasil !== null" x-transition>
 
-                    <h3 class="text-2xl font-bold text-gray-700 mb-6">
+                    <h3 class="text-lg md:text-2xl font-bold text-gray-700 mb-4 md:mb-6">
                         🎉 Hasil Perhitungan
                     </h3>
 
-                    <div class="text-6xl font-extrabold text-emerald-600 mb-6" x-text="hasil + '%'"></div>
+                    <div class="text-4xl md:text-6xl font-extrabold text-emerald-600 mb-4 md:mb-6" x-text="hasil + '%'">
+                    </div>
 
-                    <div class="w-full bg-gray-200 rounded-full h-4 mb-6 overflow-hidden">
-                        <div class="h-4 rounded-full transition-all duration-700" :style="'width: ' + hasil + '%'"
+                    <div class="w-full bg-gray-200 rounded-full h-3 md:h-4 mb-4 md:mb-6 overflow-hidden">
+                        <div class="h-3 md:h-4 rounded-full transition-all duration-700" :style="'width: ' + hasil + '%'"
                             :class="warnaBg">
                         </div>
                     </div>
 
-                    <div class="text-2xl font-bold mb-4" :class="warnaStatus" x-text="emoji + ' ' + status">
+                    <div class="text-lg md:text-2xl font-bold mb-3 md:mb-4" :class="warnaStatus"
+                        x-text="emoji + ' ' + status">
                     </div>
 
-                    <div class="bg-emerald-50 rounded-xl p-4 text-sm text-gray-600">
+                    <div class="bg-emerald-50 rounded-xl p-3 md:p-4 text-xs md:text-sm text-gray-600">
+                        Rumus: (LILA Aktual / LILA Standar) × 100%
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section
+        class="py-14 md:py-24 bg-gradient-to-br from-emerald-100 via-green-50 to-teal-100 relative overflow-hidden mt-4">
+
+        <!-- Decorative Blur -->
+        <div class="absolute -top-20 -left-20 w-48 h-48 md:w-72 md:h-72 bg-emerald-300 opacity-30 rounded-full blur-3xl">
+        </div>
+        <div class="absolute -bottom-20 -right-20 w-48 h-48 md:w-72 md:h-72 bg-teal-300 opacity-30 rounded-full blur-3xl">
+        </div>
+
+        <div class="max-w-md md:max-w-6xl mx-auto px-4 md:px-6 relative z-10">
+
+            <!-- Heading -->
+            <div class="text-center mb-10 md:mb-16">
+                <h2 class="text-2xl md:text-5xl font-extrabold text-emerald-700">
+                    🩺 Kalkulator Status Gizi (LILA)
+                </h2>
+                <p class="mt-3 md:mt-4 text-gray-600 text-sm md:text-lg">
+                    Yuk cek status gizi dengan cepat dan mudah 💚
+                </p>
+            </div>
+
+            <div x-data="kalkulatorLila()" class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+
+                <!-- LEFT SIDE -->
+                <div class="space-y-6 md:space-y-8">
+
+                    <!-- FORM -->
+                    <div
+                        class="bg-white p-5 md:p-8 rounded-2xl md:rounded-3xl shadow-lg md:shadow-xl border border-emerald-200">
+
+                        <div class="space-y-5 md:space-y-6">
+
+                            <!-- DROPDOWN -->
+                            <div>
+                                <label class="font-semibold text-gray-700 flex items-center gap-2 text-sm md:text-base">
+                                    🎂 LILA standar sesuai usia (cm)
+                                </label>
+
+                                <select x-model="usia" @change="pilihDariDropdown()"
+                                    class="w-full mt-2 md:mt-3 p-3 md:p-4 rounded-xl border focus:ring-2 focus:ring-emerald-400 text-sm md:text-base">
+                                    <option value="">-- Pilih Usia (Tahun) --</option>
+
+                                    <template x-for="item in daftarStandar" :key="item.min">
+                                        <option :value="item.min" x-text="item.label + ' Tahun'">
+                                        </option>
+                                    </template>
+                                </select>
+                            </div>
+
+                            <!-- LILA AKTUAL -->
+                            <div>
+                                <label class="font-semibold text-gray-700 flex items-center gap-2 text-sm md:text-base">
+                                    📏 LILA Aktual (cm)
+                                </label>
+                                <input type="number" step="0.1" x-model="lilaAktual"
+                                    class="w-full mt-2 md:mt-3 p-3 md:p-4 rounded-xl border focus:ring-2 focus:ring-emerald-400 text-sm md:text-base">
+                            </div>
+
+                            <button @click="hitung()"
+                                class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:scale-105 text-white font-bold py-3 md:py-3 rounded-xl shadow-md md:shadow-lg transition text-sm md:text-base">
+                                🚀 Hitung Sekarang
+                            </button>
+
+                        </div>
+                    </div>
+
+                    <!-- STANDAR CARD -->
+                    <div
+                        class="bg-white p-5 md:p-8 rounded-2xl md:rounded-3xl shadow-lg md:shadow-xl border border-emerald-200">
+
+                        <h4 class="font-bold text-emerald-700 mb-2 md:mb-2 text-base md:text-lg">
+                            📊 Standar LILA Berdasarkan Usia
+                        </h4>
+
+                        <p class="text-xs md:text-sm text-gray-500 mb-4 md:mb-6">
+                            👉 Klik rentang usia untuk memilih otomatis
+                        </p>
+
+                        <!-- MOBILE RAPAT, DESKTOP TETAP LEGA -->
+                        <div class="grid grid-cols-2 gap-3 md:gap-4 text-xs md:text-sm">
+
+                            <template x-for="item in daftarStandar" :key="item.min">
+                                <div class="bg-emerald-50 p-3 md:p-4 rounded-xl flex flex-col md:flex-row md:justify-between items-center text-center md:text-left cursor-pointer hover:bg-emerald-100 transition"
+                                    :class="usia == item.min ?
+                                        'ring-2 ring-emerald-400 bg-emerald-100' : ''"
+                                    @click="pilihStandar(item)">
+
+                                    <div class="font-medium" x-text="item.label + ' Tahun'"></div>
+
+                                    <div class="font-bold text-emerald-700 mt-1 md:mt-0" x-text="item.nilai + ' cm'">
+                                    </div>
+
+                                </div>
+                            </template>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT SIDE OUTPUT -->
+                <div class="bg-white p-6 md:p-10 rounded-2xl md:rounded-3xl shadow-lg md:shadow-2xl border border-emerald-200 text-center"
+                    x-show="hasil !== null" x-transition>
+
+                    <h3 class="text-lg md:text-2xl font-bold text-gray-700 mb-4 md:mb-6">
+                        🎉 Hasil Perhitungan
+                    </h3>
+
+                    <div class="text-4xl md:text-6xl font-extrabold text-emerald-600 mb-4 md:mb-6" x-text="hasil + '%'">
+                    </div>
+
+                    <div class="w-full bg-gray-200 rounded-full h-3 md:h-4 mb-4 md:mb-6 overflow-hidden">
+                        <div class="h-3 md:h-4 rounded-full transition-all duration-700" :style="'width: ' + hasil + '%'"
+                            :class="warnaBg">
+                        </div>
+                    </div>
+
+                    <div class="text-lg md:text-2xl font-bold mb-3 md:mb-4" :class="warnaStatus"
+                        x-text="emoji + ' ' + status">
+                    </div>
+
+                    <div class="bg-emerald-50 rounded-xl p-3 md:p-4 text-xs md:text-sm text-gray-600">
+                        Rumus: (LILA Aktual / LILA Standar) × 100%
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section
+        class="py-14 md:py-24 bg-gradient-to-br from-emerald-100 via-green-50 to-teal-100 relative overflow-hidden mt-4">
+
+        <!-- Decorative Blur -->
+        <div class="absolute -top-20 -left-20 w-48 h-48 md:w-72 md:h-72 bg-emerald-300 opacity-30 rounded-full blur-3xl">
+        </div>
+        <div class="absolute -bottom-20 -right-20 w-48 h-48 md:w-72 md:h-72 bg-teal-300 opacity-30 rounded-full blur-3xl">
+        </div>
+
+        <div class="max-w-md md:max-w-6xl mx-auto px-4 md:px-6 relative z-10">
+
+            <!-- Heading -->
+            <div class="text-center mb-10 md:mb-16">
+                <h2 class="text-2xl md:text-5xl font-extrabold text-emerald-700">
+                    🩺 Kalkulator Status Gizi (LILA)
+                </h2>
+                <p class="mt-3 md:mt-4 text-gray-600 text-sm md:text-lg">
+                    Yuk cek status gizi dengan cepat dan mudah 💚
+                </p>
+            </div>
+
+            <div x-data="kalkulatorLila()" class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+
+                <!-- LEFT SIDE -->
+                <div class="space-y-6 md:space-y-8">
+
+                    <!-- FORM -->
+                    <div
+                        class="bg-white p-5 md:p-8 rounded-2xl md:rounded-3xl shadow-lg md:shadow-xl border border-emerald-200">
+
+                        <div class="space-y-5 md:space-y-6">
+
+                            <!-- DROPDOWN -->
+                            <div>
+                                <label class="font-semibold text-gray-700 flex items-center gap-2 text-sm md:text-base">
+                                    🎂 LILA standar sesuai usia (cm)
+                                </label>
+
+                                <select x-model="usia" @change="pilihDariDropdown()"
+                                    class="w-full mt-2 md:mt-3 p-3 md:p-4 rounded-xl border focus:ring-2 focus:ring-emerald-400 text-sm md:text-base">
+                                    <option value="">-- Pilih Usia (Tahun) --</option>
+
+                                    <template x-for="item in daftarStandar" :key="item.min">
+                                        <option :value="item.min" x-text="item.label + ' Tahun'">
+                                        </option>
+                                    </template>
+                                </select>
+                            </div>
+
+                            <!-- LILA AKTUAL -->
+                            <div>
+                                <label class="font-semibold text-gray-700 flex items-center gap-2 text-sm md:text-base">
+                                    📏 LILA Aktual (cm)
+                                </label>
+                                <input type="number" step="0.1" x-model="lilaAktual"
+                                    class="w-full mt-2 md:mt-3 p-3 md:p-4 rounded-xl border focus:ring-2 focus:ring-emerald-400 text-sm md:text-base">
+                            </div>
+
+                            <button @click="hitung()"
+                                class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:scale-105 text-white font-bold py-3 md:py-3 rounded-xl shadow-md md:shadow-lg transition text-sm md:text-base">
+                                🚀 Hitung Sekarang
+                            </button>
+
+                        </div>
+                    </div>
+
+                    <!-- STANDAR CARD -->
+                    <div
+                        class="bg-white p-5 md:p-8 rounded-2xl md:rounded-3xl shadow-lg md:shadow-xl border border-emerald-200">
+
+                        <h4 class="font-bold text-emerald-700 mb-2 md:mb-2 text-base md:text-lg">
+                            📊 Standar LILA Berdasarkan Usia
+                        </h4>
+
+                        <p class="text-xs md:text-sm text-gray-500 mb-4 md:mb-6">
+                            👉 Klik rentang usia untuk memilih otomatis
+                        </p>
+
+                        <!-- MOBILE RAPAT, DESKTOP TETAP LEGA -->
+                        <div class="grid grid-cols-2 gap-3 md:gap-4 text-xs md:text-sm">
+
+                            <template x-for="item in daftarStandar" :key="item.min">
+                                <div class="bg-emerald-50 p-3 md:p-4 rounded-xl flex flex-col md:flex-row md:justify-between items-center text-center md:text-left cursor-pointer hover:bg-emerald-100 transition"
+                                    :class="usia == item.min ?
+                                        'ring-2 ring-emerald-400 bg-emerald-100' : ''"
+                                    @click="pilihStandar(item)">
+
+                                    <div class="font-medium" x-text="item.label + ' Tahun'"></div>
+
+                                    <div class="font-bold text-emerald-700 mt-1 md:mt-0" x-text="item.nilai + ' cm'">
+                                    </div>
+
+                                </div>
+                            </template>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT SIDE OUTPUT -->
+                <div class="bg-white p-6 md:p-10 rounded-2xl md:rounded-3xl shadow-lg md:shadow-2xl border border-emerald-200 text-center"
+                    x-show="hasil !== null" x-transition>
+
+                    <h3 class="text-lg md:text-2xl font-bold text-gray-700 mb-4 md:mb-6">
+                        🎉 Hasil Perhitungan
+                    </h3>
+
+                    <div class="text-4xl md:text-6xl font-extrabold text-emerald-600 mb-4 md:mb-6" x-text="hasil + '%'">
+                    </div>
+
+                    <div class="w-full bg-gray-200 rounded-full h-3 md:h-4 mb-4 md:mb-6 overflow-hidden">
+                        <div class="h-3 md:h-4 rounded-full transition-all duration-700" :style="'width: ' + hasil + '%'"
+                            :class="warnaBg">
+                        </div>
+                    </div>
+
+                    <div class="text-lg md:text-2xl font-bold mb-3 md:mb-4" :class="warnaStatus"
+                        x-text="emoji + ' ' + status">
+                    </div>
+
+                    <div class="bg-emerald-50 rounded-xl p-3 md:p-4 text-xs md:text-sm text-gray-600">
                         Rumus: (LILA Aktual / LILA Standar) × 100%
                     </div>
 
@@ -364,43 +638,36 @@
 
             daftarStandar: [{
                     min: 16,
-                    max: 17,
                     label: "16–16,9",
                     nilai: 25.8
                 },
                 {
                     min: 17,
-                    max: 18,
                     label: "17–17,9",
                     nilai: 26.9
                 },
                 {
                     min: 18,
-                    max: 19,
                     label: "18–18,9",
                     nilai: 25.7
                 },
                 {
                     min: 19,
-                    max: 25,
                     label: "19–24,9",
                     nilai: 26.5
                 },
                 {
                     min: 25,
-                    max: 45,
                     label: "25–44,9",
                     nilai: 27.7
                 },
                 {
                     min: 45,
-                    max: 55,
                     label: "45–54,9",
                     nilai: 29.0
                 },
                 {
                     min: 55,
-                    max: 70,
                     label: "55–69,9",
                     nilai: 30.3
                 },
@@ -412,20 +679,18 @@
                 this.lilaAktual = item.nilai
             },
 
-            getStandarLila() {
-                let u = parseFloat(this.usia)
-                if (isNaN(u)) return null
-
+            pilihDariDropdown() {
                 let found = this.daftarStandar.find(item =>
-                    u >= item.min && u < item.max
+                    item.min == this.usia
                 )
 
-                return found ? found.nilai : null
+                if (found) {
+                    this.standar = found.nilai
+                    this.lilaAktual = found.nilai
+                }
             },
 
             hitung() {
-                this.standar = this.getStandarLila()
-
                 let aktual = parseFloat(this.lilaAktual)
                 if (!this.standar || isNaN(aktual)) {
                     alert("Data tidak valid!")
