@@ -33,7 +33,7 @@
                             📌 Tentang Penulis
                         </h2>
 
-                        <p class="text-gray-600 leading-relaxed">
+                        <p class="text-gray-600 leading-relaxed text-justify">
                             Najla Safna Putri Nur Aura lahir di Tuban pada 10 Juni 2004.
                             Saat ini merupakan mahasiswa aktif Program Studi D-IV Gizi Klinik
                             di Politeknik Negeri Jember. Penulis memiliki minat dan fokus
@@ -63,7 +63,7 @@
                             📚 Karya Ilmiah
                         </h2>
 
-                        <p class="text-gray-600 leading-relaxed">
+                        <p class="text-gray-600 leading-relaxed text-justify">
                             Penulis telah menghasilkan karya ilmiah berupa buku MP-ASI
                             berjudul <span class="font-semibold text-green-700">
                                 “Food Recipes Anti Stunting Berbasis Augmented Reality”
@@ -79,7 +79,7 @@
                             🏆 Prestasi
                         </h2>
 
-                        <p class="text-gray-600 leading-relaxed">
+                        <p class="text-gray-600 leading-relaxed text-justify">
                             Penulis pernah mengikuti kompetisi nasional di bidang
                             Dietetic Contest dan berhasil meraih Juara 3 tingkat nasional.
                         </p>

@@ -233,7 +233,6 @@
         </div>
 
     </section> --}}
-
     <section class="py-24 bg-gradient-to-br from-emerald-100 via-green-50 to-teal-100 relative overflow-hidden mt-4">
 
         <!-- Decorative Blur -->
@@ -257,9 +256,8 @@
                 <!-- LEFT SIDE -->
                 <div class="space-y-8">
 
-                    <!-- FORM CARD -->
+                    <!-- FORM -->
                     <div class="bg-white p-8 rounded-3xl shadow-xl border border-emerald-200">
-
                         <div class="space-y-6">
 
                             <div>
@@ -289,66 +287,49 @@
                     <!-- STANDAR CARD -->
                     <div class="bg-white p-8 rounded-3xl shadow-xl border border-emerald-200">
 
-                        <h4 class="font-bold text-emerald-700 mb-6 text-lg">
+                        <h4 class="font-bold text-emerald-700 mb-2 text-lg">
                             📊 Standar LILA Berdasarkan Usia
                         </h4>
 
+                        <!-- Keterangan klik -->
+                        <p class="text-sm text-gray-500 mb-6 flex items-center gap-2">
+                            👉 Klik salah satu rentang usia untuk memilih standar otomatis
+                        </p>
+
                         <div class="grid grid-cols-2 gap-4 text-sm">
 
-                            <div class="bg-emerald-50 p-3 rounded-xl flex justify-between">
-                                <span>16–16,9</span>
-                                <span class="font-semibold">25,8 cm</span>
-                            </div>
+                            <template x-for="item in daftarStandar" :key="item.min">
+                                <div class="bg-emerald-50 p-3 rounded-xl flex justify-between items-center
+                        cursor-pointer hover:bg-emerald-100 hover:scale-105
+                        transition duration-200"
+                                    :class="usia >= item.min && usia < item.max ?
+                                        'ring-2 ring-emerald-400 bg-emerald-100' : ''"
+                                    @click="pilihStandar(item)">
 
-                            <div class="bg-emerald-50 p-3 rounded-xl flex justify-between">
-                                <span>17–17,9</span>
-                                <span class="font-semibold">26,9 cm</span>
-                            </div>
+                                    <span class="flex items-center gap-1">
+                                        <span x-text="item.label"></span>
+                                    </span>
 
-                            <div class="bg-emerald-50 p-3 rounded-xl flex justify-between">
-                                <span>18–18,9</span>
-                                <span class="font-semibold">25,7 cm</span>
-                            </div>
+                                    <span class="font-semibold" x-text="item.nilai + ' cm'"></span>
 
-                            <div class="bg-emerald-50 p-3 rounded-xl flex justify-between">
-                                <span>19–24,9</span>
-                                <span class="font-semibold">26,5 cm</span>
-                            </div>
-
-                            <div class="bg-emerald-50 p-3 rounded-xl flex justify-between">
-                                <span>25–44,9</span>
-                                <span class="font-semibold">27,7 cm</span>
-                            </div>
-
-                            <div class="bg-emerald-50 p-3 rounded-xl flex justify-between">
-                                <span>45–54,9</span>
-                                <span class="font-semibold">29,0 cm</span>
-                            </div>
-
-                            <div class="bg-emerald-50 p-3 rounded-xl flex justify-between col-span-2">
-                                <span>55–69,9</span>
-                                <span class="font-semibold">30,3 cm</span>
-                            </div>
+                                </div>
+                            </template>
 
                         </div>
-
                     </div>
 
                 </div>
 
                 <!-- RIGHT SIDE OUTPUT -->
                 <div class="bg-white p-10 rounded-3xl shadow-2xl border border-emerald-200 text-center"
-                    x-show="hasil !== null" x-transition:enter="transition ease-out duration-500"
-                    x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                    x-show="hasil !== null" x-transition>
 
                     <h3 class="text-2xl font-bold text-gray-700 mb-6">
                         🎉 Hasil Perhitungan
                     </h3>
 
-                    <div class="text-6xl font-extrabold text-emerald-600 mb-6" x-text="hasil + '%'">
-                    </div>
+                    <div class="text-6xl font-extrabold text-emerald-600 mb-6" x-text="hasil + '%'"></div>
 
-                    <!-- Progress -->
                     <div class="w-full bg-gray-200 rounded-full h-4 mb-6 overflow-hidden">
                         <div class="h-4 rounded-full transition-all duration-700" :style="'width: ' + hasil + '%'"
                             :class="warnaBg">
@@ -368,10 +349,10 @@
         </div>
     </section>
 @endsection
-
 <script>
     function kalkulatorLila() {
         return {
+
             usia: '',
             lilaAktual: '',
             hasil: null,
@@ -381,57 +362,104 @@
             emoji: '',
             standar: null,
 
+            daftarStandar: [{
+                    min: 16,
+                    max: 17,
+                    label: "16–16,9",
+                    nilai: 25.8
+                },
+                {
+                    min: 17,
+                    max: 18,
+                    label: "17–17,9",
+                    nilai: 26.9
+                },
+                {
+                    min: 18,
+                    max: 19,
+                    label: "18–18,9",
+                    nilai: 25.7
+                },
+                {
+                    min: 19,
+                    max: 25,
+                    label: "19–24,9",
+                    nilai: 26.5
+                },
+                {
+                    min: 25,
+                    max: 45,
+                    label: "25–44,9",
+                    nilai: 27.7
+                },
+                {
+                    min: 45,
+                    max: 55,
+                    label: "45–54,9",
+                    nilai: 29.0
+                },
+                {
+                    min: 55,
+                    max: 70,
+                    label: "55–69,9",
+                    nilai: 30.3
+                },
+            ],
+
+            pilihStandar(item) {
+                this.usia = item.min
+                this.standar = item.nilai
+                this.lilaAktual = item.nilai
+            },
+
             getStandarLila() {
-                let u = parseFloat(this.usia);
+                let u = parseFloat(this.usia)
+                if (isNaN(u)) return null
 
-                if (u >= 16 && u < 17) return 25.8;
-                if (u >= 17 && u < 18) return 26.9;
-                if (u >= 18 && u < 19) return 25.7;
-                if (u >= 19 && u < 25) return 26.5;
-                if (u >= 25 && u < 45) return 27.7;
-                if (u >= 45 && u < 55) return 29.0;
-                if (u >= 55 && u <= 69.9) return 30.3;
+                let found = this.daftarStandar.find(item =>
+                    u >= item.min && u < item.max
+                )
 
-                return null;
+                return found ? found.nilai : null
             },
 
             hitung() {
-                let standar = this.getStandarLila();
-                this.standar = standar;
+                this.standar = this.getStandarLila()
 
-                if (!standar || !this.lilaAktual) {
-                    alert("Data tidak valid!");
-                    return;
+                let aktual = parseFloat(this.lilaAktual)
+                if (!this.standar || isNaN(aktual)) {
+                    alert("Data tidak valid!")
+                    return
                 }
 
-                let persen = (this.lilaAktual / standar) * 100;
-                this.hasil = persen.toFixed(1);
+                let persen = (aktual / this.standar) * 100
+                this.hasil = persen.toFixed(1)
 
                 if (persen > 120) {
-                    this.status = "Obesitas";
-                    this.emoji = "🔴";
-                    this.warnaStatus = "text-red-600";
-                    this.warnaBg = "bg-red-500";
+                    this.status = "Obesitas"
+                    this.emoji = "🔴"
+                    this.warnaStatus = "text-red-600"
+                    this.warnaBg = "bg-red-500"
                 } else if (persen >= 110) {
-                    this.status = "Overweight";
-                    this.emoji = "🟠";
-                    this.warnaStatus = "text-orange-500";
-                    this.warnaBg = "bg-orange-500";
+                    this.status = "Overweight"
+                    this.emoji = "🟠"
+                    this.warnaStatus = "text-orange-500"
+                    this.warnaBg = "bg-orange-500"
                 } else if (persen >= 84) {
-                    this.status = "Gizi Baik";
-                    this.emoji = "🟢";
-                    this.warnaStatus = "text-green-600";
-                    this.warnaBg = "bg-green-500";
+                    this.status = "Gizi Baik"
+                    this.emoji = "🟢"
+                    this.warnaStatus = "text-green-600"
+                    this.warnaBg = "bg-green-500"
                 } else if (persen >= 70) {
-                    this.status = "Gizi Kurang";
-                    this.emoji = "🟡";
-                    this.warnaStatus = "text-yellow-500";
-                    this.warnaBg = "bg-yellow-400";
+                    this.status = "Gizi Kurang"
+                    this.emoji = "🟡"
+                    this.warnaStatus = "text-yellow-500"
+                    this.warnaBg = "bg-yellow-400"
                 } else {
-                    this.status = "Gizi Buruk";
-                    this.emoji = "⚠️";
-                    this.warnaStatus = "text-red-700";
-                    this.warnaBg = "bg-red-700";
+                    this.status = "Gizi Buruk"
+                    this.emoji = "⚠️"
+                    this.warnaStatus = "text-red-700"
+                    this.warnaBg = "bg-red-700"
                 }
             }
         }

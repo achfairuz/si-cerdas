@@ -36,7 +36,7 @@
                         </a>
                     </li>
 
-                    <li class="flex items-center gap-2">
+                    {{-- <li class="flex items-center gap-2">
                         <a href="https://www.instagram.com/website_sicerdas/" target="_blank"
                             class="flex items-center gap-2 hover:text-pink-600 transition">
 
@@ -49,7 +49,7 @@
 
                             <span>@website_sicerdas</span>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li class="flex items-center gap-2">
                         📍 Indonesia
