@@ -213,7 +213,7 @@
                     </div>
 
                     <!-- STANDAR CARD -->
-                    <div
+                    {{-- <div
                         class="bg-white p-5 md:p-8 rounded-2xl md:rounded-3xl shadow-lg md:shadow-xl border border-emerald-200">
 
                         <h4 class="font-bold text-emerald-700 mb-2 md:mb-2 text-base md:text-lg">
@@ -242,7 +242,7 @@
                             </template>
 
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
 
