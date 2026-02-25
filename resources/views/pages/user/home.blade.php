@@ -130,109 +130,8 @@
     @endif
 
 
+    {{-- KALKULATOR LILA --}}
 
-    {{-- Kalkulator --}}
-    {{-- <section class="mt-16 bg-green-50 py-16 rounded-3xl">
-        <div class="text-center mb-12">
-            <h3 class="text-3xl font-bold text-green-700">
-                🤰 Kalkulator BMI Ibu Hamil
-            </h3>
-            <p class="text-gray-600 mt-3">
-                Yuk cek kondisi tubuh sebelum hamil agar kehamilan makin sehat 💚
-            </p>
-        </div>
-
-        <div x-data="{
-            berat: '',
-            tinggi: '',
-            hasil: null,
-            kategori: '',
-            rekomendasi: '',
-            warna: 'green',
-            hitung() {
-                if (!this.berat || !this.tinggi) return;
-        
-                let t = this.tinggi / 100
-                let bmi = this.berat / (t * t)
-                this.hasil = bmi.toFixed(1)
-        
-                if (bmi < 18.5) {
-                    this.kategori = 'Berat Badan Kurang 😢'
-                    this.rekomendasi = 'Rekomendasi kenaikan: 12.5 - 18 kg'
-                    this.warna = 'yellow'
-                } else if (bmi < 25) {
-                    this.kategori = 'Normal 😊'
-                    this.rekomendasi = 'Rekomendasi kenaikan: 11.5 - 16 kg'
-                    this.warna = 'green'
-                } else if (bmi < 30) {
-                    this.kategori = 'Berat Badan Berlebih 😅'
-                    this.rekomendasi = 'Rekomendasi kenaikan: 7 - 11.5 kg'
-                    this.warna = 'orange'
-                } else {
-                    this.kategori = 'Obesitas ⚠️'
-                    this.rekomendasi = 'Rekomendasi kenaikan: 5 - 9 kg'
-                    this.warna = 'red'
-                }
-            }
-        }" class="bg-white rounded-[40px] shadow-xl p-10 md:p-14 max-w-3xl mx-auto relative">
-
-            <!-- Cute Decoration -->
-            <div class="absolute -top-6 -right-6 text-6xl opacity-20">
-                💚
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-6">
-
-                <div>
-                    <label class="block text-gray-700 font-semibold mb-2">
-                        ⚖️ Berat Badan (kg)
-                    </label>
-                    <input type="number" x-model="berat"
-                        class="w-full border-2 border-green-200 rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400 transition"
-                        placeholder="Contoh: 55">
-                </div>
-
-                <div>
-                    <label class="block text-gray-700 font-semibold mb-2">
-                        📏 Tinggi Badan (cm)
-                    </label>
-                    <input type="number" x-model="tinggi"
-                        class="w-full border-2 border-green-200 rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400 transition"
-                        placeholder="Contoh: 160">
-                </div>
-
-            </div>
-
-            <button @click="hitung()"
-                class="mt-8 bg-gradient-to-r from-green-500 to-green-600 hover:scale-105 transform transition text-white px-6 py-3 rounded-2xl font-bold w-full shadow-md">
-                💚 Hitung Sekarang
-            </button>
-
-            <!-- RESULT -->
-            <div x-show="hasil" x-transition.scale.duration.400ms
-                class="mt-10 p-8 rounded-3xl text-center space-y-4 shadow-inner"
-                :class="{
-                    'bg-green-100 text-green-700': warna === 'green',
-                    'bg-yellow-100 text-yellow-700': warna === 'yellow',
-                    'bg-orange-100 text-orange-700': warna === 'orange',
-                    'bg-red-100 text-red-700': warna === 'red'
-                }">
-
-                <p class="text-lg font-semibold">
-                    🎉 Hasil BMI Anda
-                </p>
-
-                <p class="text-5xl font-bold" x-text="hasil"></p>
-
-                <p class="text-lg font-medium" x-text="kategori"></p>
-
-                <p class="text-sm opacity-80" x-text="rekomendasi"></p>
-
-            </div>
-
-        </div>
-
-    </section> --}}
     <section
         class="py-14 md:py-24 bg-gradient-to-br from-emerald-100 via-green-50 to-teal-100 relative overflow-hidden mt-4">
 
@@ -254,110 +153,32 @@
                 </p>
             </div>
 
-            <div x-data="kalkulatorLila()" class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+            <div x-data="kalkulatorLila()" class="space-y-6">
 
-                <!-- LEFT SIDE -->
-                <div class="space-y-6 md:space-y-8">
+                <select x-model="standar" class="w-full mt-2 p-4 rounded-xl border focus:ring-2 focus:ring-emerald-400">
 
-                    <!-- FORM -->
-                    <div
-                        class="bg-white p-5 md:p-8 rounded-2xl md:rounded-3xl shadow-lg md:shadow-xl border border-emerald-200">
+                    <option value="">-- Pilih Usia --</option>
 
-                        <div class="space-y-5 md:space-y-6">
+                    <option x-for="item in daftarStandar" :key="item.label" :value="item.nilai"
+                        x-text="item.label + ' Tahun'">
+                    </option>
 
-                            <!-- DROPDOWN -->
-                            <div>
-                                <label class="font-semibold text-gray-700 flex items-center gap-2 text-sm md:text-base">
-                                    🎂 LILA standar sesuai usia (tahun)
-                                </label>
+                </select>
 
-                                <select x-model="usia" @change="pilihDariDropdown()"
-                                    class="w-full mt-2 md:mt-3 p-3 md:p-4 rounded-xl border focus:ring-2 focus:ring-emerald-400 text-sm md:text-base">
-                                    <option value="">-- Pilih Usia (Tahun) --</option>
+                <!-- LILA AKTUAL -->
+                <div>
+                    <label class="font-semibold text-gray-700">
+                        📏 LILA Aktual (cm)
+                    </label>
 
-                                    <template x-for="item in daftarStandar" :key="item.min">
-                                        <option :value="item.min" x-text="item.label + ' Tahun'">
-                                        </option>
-                                    </template>
-                                </select>
-                            </div>
-
-                            <!-- LILA AKTUAL -->
-                            <div>
-                                <label class="font-semibold text-gray-700 flex items-center gap-2 text-sm md:text-base">
-                                    📏 LILA Aktual (cm)
-                                </label>
-                                <input type="number" step="0.1" x-model="lilaAktual"
-                                    class="w-full mt-2 md:mt-3 p-3 md:p-4 rounded-xl border focus:ring-2 focus:ring-emerald-400 text-sm md:text-base">
-                            </div>
-
-                            <button @click="hitung()"
-                                class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:scale-105 text-white font-bold py-3 md:py-3 rounded-xl shadow-md md:shadow-lg transition text-sm md:text-base">
-                                🚀 Hitung Sekarang
-                            </button>
-
-                        </div>
-                    </div>
-
-                    <!-- STANDAR CARD -->
-                    <div
-                        class="bg-white p-5 md:p-8 rounded-2xl md:rounded-3xl shadow-lg md:shadow-xl border border-emerald-200">
-
-                        <h4 class="font-bold text-emerald-700 mb-2 md:mb-2 text-base md:text-lg">
-                            📊 Standar LILA Berdasarkan Usia
-                        </h4>
-
-                        <p class="text-xs md:text-sm text-gray-500 mb-4 md:mb-6">
-                            👉 Klik rentang usia untuk memilih otomatis
-                        </p>
-
-                        <!-- MOBILE RAPAT, DESKTOP TETAP LEGA -->
-                        <div class="grid grid-cols-2 gap-3 md:gap-4 text-xs md:text-sm">
-
-                            <template x-for="item in daftarStandar" :key="item.min">
-                                <div class="bg-emerald-50 p-3 md:p-4 rounded-xl flex flex-col md:flex-row md:justify-between items-center text-center md:text-left cursor-pointer hover:bg-emerald-100 transition"
-                                    :class="usia == item.min ?
-                                        'ring-2 ring-emerald-400 bg-emerald-100' : ''"
-                                    @click="pilihStandar(item)">
-
-                                    <div class="font-medium" x-text="item.label + ' Tahun'"></div>
-
-                                    <div class="font-bold text-emerald-700 mt-1 md:mt-0" x-text="item.nilai + ' cm'"></div>
-
-                                </div>
-                            </template>
-
-                        </div>
-                    </div>
-
+                    <input type="number" step="0.1" x-model="lilaAktual" placeholder="Masukkan LILA aktual"
+                        class="w-full mt-2 p-4 rounded-xl border focus:ring-2 focus:ring-emerald-400">
                 </div>
 
-                <!-- RIGHT SIDE OUTPUT -->
-                <div class="bg-white p-6 md:p-10 rounded-2xl md:rounded-3xl shadow-lg md:shadow-2xl border border-emerald-200 text-center"
-                    x-show="hasil !== null" x-transition>
-
-                    <h3 class="text-lg md:text-2xl font-bold text-gray-700 mb-4 md:mb-6">
-                        🎉 Hasil Perhitungan
-                    </h3>
-
-                    <div class="text-4xl md:text-6xl font-extrabold text-emerald-600 mb-4 md:mb-6" x-text="hasil + '%'">
-                    </div>
-
-                    <div class="w-full bg-gray-200 rounded-full h-3 md:h-4 mb-4 md:mb-6 overflow-hidden">
-                        <div class="h-3 md:h-4 rounded-full transition-all duration-700" :style="'width: ' + hasil + '%'"
-                            :class="warnaBg">
-                        </div>
-                    </div>
-
-                    <div class="text-lg md:text-2xl font-bold mb-3 md:mb-4" :class="warnaStatus"
-                        x-text="emoji + ' ' + status">
-                    </div>
-
-                    <div class="bg-emerald-50 rounded-xl p-3 md:p-4 text-xs md:text-sm text-gray-600">
-                        Rumus: (LILA Aktual / LILA Standar) × 100%
-                    </div>
-
-                </div>
+                <button @click="hitung()"
+                    class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold py-4 rounded-xl shadow-lg hover:scale-105 transition">
+                    🚀 Hitung Sekarang
+                </button>
 
             </div>
         </div>
@@ -526,13 +347,14 @@
 
                             <!-- DROPDOWN -->
                             <div>
-                                <label class="font-semibold text-gray-700 flex items-center gap-2 text-sm md:text-base">
+                                <label class="font-semibold text-gray-700 flex items-center gap-2">
                                     🎂 LILA standar sesuai usia (cm)
                                 </label>
 
                                 <select x-model="usia" @change="pilihDariDropdown()"
-                                    class="w-full mt-2 md:mt-3 p-3 md:p-4 rounded-xl border focus:ring-2 focus:ring-emerald-400 text-sm md:text-base">
-                                    <option value="">-- Pilih Usia (Tahun) --</option>
+                                    class="w-full mt-2 p-4 rounded-xl border focus:ring-2 focus:ring-emerald-400">
+
+                                    <option value="">-- Pilih Standar LILA --</option>
 
                                     <template x-for="item in daftarStandar" :key="item.min">
                                         <option :value="item.min" x-text="item.label + ' Tahun'">
@@ -541,13 +363,25 @@
                                 </select>
                             </div>
 
-                            <!-- LILA AKTUAL -->
+                            <!-- INPUT STANDAR (READONLY) -->
                             <div>
-                                <label class="font-semibold text-gray-700 flex items-center gap-2 text-sm md:text-base">
+                                <label class="font-semibold text-gray-700 flex items-center gap-2">
+                                    📊 LILA Standar (cm)
+                                </label>
+
+                                <input type="text" :value="standar ? standar + ' cm' : ''" readonly
+                                    class="w-full mt-2 p-4 rounded-xl border bg-gray-100">
+                            </div>
+
+                            <!-- LILA AKTUAL MANUAL -->
+                            <div>
+                                <label class="font-semibold text-gray-700 flex items-center gap-2">
                                     📏 LILA Aktual (cm)
                                 </label>
+
                                 <input type="number" step="0.1" x-model="lilaAktual"
-                                    class="w-full mt-2 md:mt-3 p-3 md:p-4 rounded-xl border focus:ring-2 focus:ring-emerald-400 text-sm md:text-base">
+                                    placeholder="Masukkan LILA aktual"
+                                    class="w-full mt-2 p-4 rounded-xl border focus:ring-2 focus:ring-emerald-400">
                             </div>
 
                             <button @click="hitung()"
@@ -670,34 +504,33 @@
                     min: 55,
                     label: "55–69,9",
                     nilai: 30.3
-                },
+                }
             ],
 
             pilihStandar(item) {
                 this.usia = item.min
                 this.standar = item.nilai
-                this.lilaAktual = item.nilai
             },
 
             pilihDariDropdown() {
-                let found = this.daftarStandar.find(item =>
-                    item.min == this.usia
-                )
+                const found = this.daftarStandar.find(item => item.min == this.usia)
 
                 if (found) {
                     this.standar = found.nilai
-                    this.lilaAktual = found.nilai
+                } else {
+                    this.standar = null
                 }
             },
 
             hitung() {
-                let aktual = parseFloat(this.lilaAktual)
+                const aktual = parseFloat(this.lilaAktual)
+
                 if (!this.standar || isNaN(aktual)) {
-                    alert("Data tidak valid!")
+                    alert("Silakan pilih usia dan isi LILA aktual dengan benar!")
                     return
                 }
 
-                let persen = (aktual / this.standar) * 100
+                const persen = (aktual / this.standar) * 100
                 this.hasil = persen.toFixed(1)
 
                 if (persen > 120) {
@@ -705,21 +538,25 @@
                     this.emoji = "🔴"
                     this.warnaStatus = "text-red-600"
                     this.warnaBg = "bg-red-500"
+
                 } else if (persen >= 110) {
                     this.status = "Overweight"
                     this.emoji = "🟠"
                     this.warnaStatus = "text-orange-500"
                     this.warnaBg = "bg-orange-500"
+
                 } else if (persen >= 84) {
                     this.status = "Gizi Baik"
                     this.emoji = "🟢"
                     this.warnaStatus = "text-green-600"
                     this.warnaBg = "bg-green-500"
+
                 } else if (persen >= 70) {
                     this.status = "Gizi Kurang"
                     this.emoji = "🟡"
                     this.warnaStatus = "text-yellow-500"
                     this.warnaBg = "bg-yellow-400"
+
                 } else {
                     this.status = "Gizi Buruk"
                     this.emoji = "⚠️"
