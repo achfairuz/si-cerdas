@@ -5,12 +5,11 @@
         <div class="max-w-4xl mx-auto md:px-6">
 
             <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
-
                 <!-- HEADER -->
                 <div class="bg-green-600 p-10 text-center text-white">
 
                     <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-white shadow-lg">
-                        <img src="{{ asset('assets/images/author.jpg') }}" alt="Najla Safna Putri Nur Aura"
+                        <img src="{{ asset('assets/images/author.png') }}" alt="Najla Safna Putri Nur Aura"
                             class="w-full h-full object-cover">
                     </div>
 
