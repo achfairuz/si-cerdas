@@ -84,13 +84,58 @@
                         </p>
                     </div>
 
+                    <!-- Download -->
+                    <div>
+                        <h2 class="text-xl font-bold text-green-700 mb-4">
+                            📲 Download Aplikasi & Buku
+                        </h2>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+
+                            <!-- Download Aplikasi -->
+                            <div class="bg-green-50 p-6 rounded-2xl border border-green-200 shadow-sm">
+                                <h3 class="font-semibold text-green-700 text-lg mb-2">
+                                    Aplikasi Edukasi Gizi
+                                </h3>
+
+                                <p class="text-gray-600 text-sm mb-4">
+                                    Unduh aplikasi edukasi pencegahan stunting berbasis teknologi
+                                    untuk mendapatkan informasi gizi, panduan MP-ASI, dan fitur interaktif lainnya.
+                                </p>
+
+                                <a href="https://drive.google.com/file/d/1P3GG-3nHchZdcUqtOmMuZVBcZaVval59/view?usp=drivesdk"
+                                    target="_blank"
+                                    class="inline-block bg-green-600 text-white px-5 py-2 rounded-xl font-medium hover:bg-green-700 transition">
+                                    ⬇ Download Aplikasi
+                                </a>
+                            </div>
+
+                            <!-- Download Buku -->
+                            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200 shadow-sm">
+                                <h3 class="font-semibold text-gray-700 text-lg mb-2">
+                                    Buku MP-ASI AR
+                                </h3>
+
+                                <p class="text-gray-600 text-sm mb-4">
+                                    Buku “Food Recipes Anti Stunting Berbasis Augmented Reality”
+                                    akan segera tersedia untuk diunduh dalam versi digital.
+                                </p>
+
+                                <button disabled
+                                    class="inline-block bg-gray-300 text-gray-600 px-5 py-2 rounded-xl font-medium cursor-not-allowed">
+                                    📖 Segera Hadir
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
 
             </div>
 
             <!-- Back Button -->
-            <div class="mt-8">
-                <a href="{{ url()->previous() }}" class="text-green-600 font-medium hover:underline">
+            <div class="mt-8 p-4">
+                <a href="{{ url()->previous() }}" class="text-green-600 font-medium hover:underline ">
                     ← Kembali
                 </a>
             </div>
