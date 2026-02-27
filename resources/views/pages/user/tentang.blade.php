@@ -113,12 +113,11 @@
                             <!-- Download Buku -->
                             <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200 shadow-sm">
                                 <h3 class="font-semibold text-gray-700 text-lg mb-2">
-                                    Buku MP-ASI AR
+                                    E-Book Protein Booster
                                 </h3>
 
                                 <p class="text-gray-600 text-sm mb-4">
-                                    Buku “Food Recipes Anti Stunting Berbasis Augmented Reality”
-                                    akan segera tersedia untuk diunduh dalam versi digital.
+                                    Buku “E-Book Protein Booster” akan segera tersedia untuk diunduh dalam versi digital.
                                 </p>
 
                                 <button disabled
