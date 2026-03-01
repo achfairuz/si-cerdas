@@ -92,21 +92,24 @@
         KANDUNGAN GIZI PER PORSI
     </h2>
 
-    <div class="flex gap-4 overflow-x-auto no-scrollbar px-4">
+    <div class="flex gap-5 overflow-x-auto no-scrollbar px-4">
 
         @foreach ($recipe->nutritions as $nutrition)
-            <div class="min-w-[110px] flex-shrink-0">
+            <div class="min-w-[90px] flex-shrink-0">
 
-                <!-- Top -->
-                <div class="bg-green-500 text-black font-semibold 
-                            rounded-t-full py-3 text-sm">
-                    {{ $nutrition->label }}
-                </div>
+                <div class="overflow-hidden rounded-full border border-gray-300 shadow-sm">
 
-                <!-- Bottom -->
-                <div class="bg-white border border-gray-300 
-                            rounded-b-full py-4 text-base font-medium">
-                    {{ $nutrition->value }}
+                    <!-- Bagian Atas -->
+                    <div class="bg-green-500 text-black font-semibold 
+                                py-5 text-sm">
+                        {{ $nutrition->label }}
+                    </div>
+
+                    <!-- Bagian Bawah -->
+                    <div class="bg-white py-8 text-base font-medium">
+                        {{ $nutrition->value }}
+                    </div>
+
                 </div>
 
             </div>
