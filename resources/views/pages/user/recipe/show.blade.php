@@ -86,25 +86,35 @@
                         </div>
                     </div>
 
-                    <!-- ================= NUTRITION ================= -->
-                    <div class="mb-14">
-                        <h2 class="text-2xl font-bold text-green-700 mb-6">
-                            🥗 Informasi Nutrisi
-                        </h2>
+                  <!-- ================= NUTRITION ================= -->
+<div class="mb-20 text-center">
 
-                        <div class="grid md:grid-cols-2 gap-6">
-                            @foreach ($recipe->nutritions as $nutrition)
-                                <div class="bg-emerald-50 p-5 rounded-2xl shadow">
-                                    <div class="text-gray-600 text-sm">
-                                        {{ $nutrition->label }}
-                                    </div>
-                                    <div class="text-xl font-semibold text-green-700">
-                                        {{ $nutrition->value }}
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-12 tracking-wide">
+        KANDUNGAN GIZI PER PORSI
+    </h2>
+
+    <div class="flex flex-wrap justify-center gap-8">
+
+        @foreach ($recipe->nutritions as $nutrition)
+            <div class="w-40">
+
+                <!-- Bagian Atas (Hijau) -->
+                <div class="bg-green-500 text-black font-semibold 
+                            rounded-t-full py-6 text-xl">
+                    {{ $nutrition->label }}
+                </div>
+
+                <!-- Bagian Bawah (Putih) -->
+                <div class="bg-white border border-gray-300 
+                            rounded-b-full py-8 text-2xl font-medium">
+                    {{ $nutrition->value }}
+                </div>
+
+            </div>
+        @endforeach
+
+    </div>
+</div>
                 </div>
             </div>
 
