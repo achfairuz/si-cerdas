@@ -86,35 +86,32 @@
                         </div>
                     </div>
 <!-- ================= NUTRITION ================= -->
-<div class="mb-20 text-center">
+<div class="mb-16 text-center">
 
-    <h2 class="text-3xl md:text-4xl font-extrabold mb-12 tracking-wide">
+    <h2 class="text-xl md:text-3xl font-bold mb-8 tracking-wide">
         KANDUNGAN GIZI PER PORSI
     </h2>
 
-    <!-- Wrapper Scroll Horizontal -->
-    <div class="relative">
-        <div class="flex gap-8 overflow-x-auto no-scrollbar px-4">
+    <div class="flex gap-4 overflow-x-auto no-scrollbar px-4">
 
-            @foreach ($recipe->nutritions as $nutrition)
-                <div class="min-w-[160px] flex-shrink-0">
+        @foreach ($recipe->nutritions as $nutrition)
+            <div class="min-w-[110px] flex-shrink-0">
 
-                    <!-- Bagian Atas -->
-                    <div class="bg-green-500 text-black font-semibold 
-                                rounded-t-full py-6 text-xl">
-                        {{ $nutrition->label }}
-                    </div>
-
-                    <!-- Bagian Bawah -->
-                    <div class="bg-white border border-gray-300 
-                                rounded-b-full py-8 text-2xl font-medium">
-                        {{ $nutrition->value }}
-                    </div>
-
+                <!-- Top -->
+                <div class="bg-green-500 text-black font-semibold 
+                            rounded-t-full py-3 text-sm">
+                    {{ $nutrition->label }}
                 </div>
-            @endforeach
 
-        </div>
+                <!-- Bottom -->
+                <div class="bg-white border border-gray-300 
+                            rounded-b-full py-4 text-base font-medium">
+                    {{ $nutrition->value }}
+                </div>
+
+            </div>
+        @endforeach
+
     </div>
 
 </div>
