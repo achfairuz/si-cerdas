@@ -85,26 +85,40 @@
                             @endforeach
                         </div>
                     </div>
+<!-- ================= NUTRITION ================= -->
+<div class="mb-16 text-center">
 
-                    <!-- ================= NUTRITION ================= -->
-                    <div class="mb-14">
-                        <h2 class="text-2xl font-bold text-green-700 mb-6">
-                            🥗 Informasi Nutrisi
-                        </h2>
+    <h2 class="text-xl md:text-3xl font-bold mb-8 tracking-wide">
+        KANDUNGAN GIZI PER PORSI
+    </h2>
 
-                        <div class="grid md:grid-cols-2 gap-6">
-                            @foreach ($recipe->nutritions as $nutrition)
-                                <div class="bg-emerald-50 p-5 rounded-2xl shadow">
-                                    <div class="text-gray-600 text-sm">
-                                        {{ $nutrition->label }}
-                                    </div>
-                                    <div class="text-xl font-semibold text-green-700">
-                                        {{ $nutrition->value }}
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
+    <div class="flex gap-5 overflow-x-auto no-scrollbar px-4">
+
+        @foreach ($recipe->nutritions as $nutrition)
+            <div class="min-w-[90px] flex-shrink-0">
+
+                <div class="overflow-hidden rounded-full border border-gray-300 shadow-sm">
+
+                    <!-- Bagian Atas -->
+                    <div class="bg-green-500 text-black font-semibold 
+                                py-5 text-sm">
+                        {{ $nutrition->label }}
                     </div>
+
+                    <!-- Bagian Bawah -->
+                    <div class="bg-white py-8 text-base font-medium">
+                        {{ $nutrition->value }}
+                    </div>
+
+                </div>
+
+            </div>
+        @endforeach
+
+    </div>
+
+</div>
+                  
                 </div>
             </div>
 
