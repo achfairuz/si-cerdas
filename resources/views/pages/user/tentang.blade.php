@@ -99,8 +99,10 @@
                                 </h3>
 
                                 <p class="text-gray-600 text-sm mb-4">
-                                    Unduh aplikasi edukasi pencegahan stunting berbasis teknologi
-                                    untuk mendapatkan informasi gizi, panduan MP-ASI, dan fitur interaktif lainnya.
+                                    Unduh aplikasi edukasi pencegahan stunting bernama Maternia, yang membantu orang tua
+                                    memahami pentingnya pemenuhan gizi sejak dini. Aplikasi ini menyediakan informasi gizi,
+                                    panduan MP-ASI, serta fitur interaktif berbasis Augmented Reality (AR) untuk pengalaman
+                                    belajar yang lebih menarik dan mudah dipahami.
                                 </p>
 
                                 <a href="https://drive.google.com/file/d/1P3GG-3nHchZdcUqtOmMuZVBcZaVval59/view?usp=drivesdk"
