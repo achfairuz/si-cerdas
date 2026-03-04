@@ -2,19 +2,40 @@
 
 @section('content')
     @php
-        function getYoutubeId($url)
-        {
-            preg_match('/(youtu\.be\/|v=)([^&]+)/', $url, $matches);
-            return $matches[2] ?? null;
-        }
+        $desc = $education->description;
 
-        $youtubeId = $education->link ? getYoutubeId($education->link) : null;
+        /*
+|--------------------------------------------------------------------------
+| Convert YouTube <a href=""> menjadi iframe embed
+|--------------------------------------------------------------------------
+*/
+        $desc = preg_replace_callback(
+            '/<p>\s*<a[^>]+href="https?:\/\/(?:www\.)?youtube\.com\/watch\?v=([^"&]+)[^"]*"[^>]*>.*?<\/a>\s*<\/p>/i',
+            function ($matches) {
+                $videoId = $matches[1];
+
+                return '
+        <div class="my-10 not-prose">
+            <div class="w-full aspect-video overflow-hidden rounded-2xl shadow-lg">
+                <iframe
+                    src="https://www.youtube.com/embed/' .
+                    $videoId .
+                    '"
+                    class="w-full h-full"
+                    frameborder="0"
+                    allowfullscreen
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                </iframe>
+            </div>
+        </div>';
+            },
+            $desc,
+        );
     @endphp
-
     <div class="bg-gradient-to-br from-green-50 via-emerald-50 to-pink-50 min-h-screen md:py-12 py-8">
         <div class="max-w-4xl mx-auto md:px-4">
 
-            <!-- Breadcrumb Cute -->
+            <!-- Breadcrumb -->
             <div class="text-sm text-gray-500 mb-8 flex items-center gap-2">
                 <a href="{{ route('home') }}" class="hover:text-green-600 transition">
                     🏠 Beranda
@@ -34,16 +55,15 @@
                             class="w-full h-full object-cover hover:scale-105 transition duration-500"
                             alt="{{ $education->title }}">
 
-                        <!-- Cute Decoration -->
                         <div class="absolute top-4 right-4 text-4xl opacity-80">
                             🌸
                         </div>
                     </div>
                 @endif
 
-                <div class="p-6  md:p-14">
+                <div class="p-6 md:p-14">
 
-                    <!-- CATEGORY BADGE -->
+                    <!-- CATEGORY -->
                     <div class="mb-6">
                         <span
                             class="inline-block bg-pink-100 text-pink-600 text-sm font-semibold px-4 py-2 rounded-full shadow-sm">
@@ -62,42 +82,25 @@
                         {{ $education->updated_at->format('d M Y') }}
                     </div>
 
-                    <!-- Divider Cute -->
+                    <!-- Divider -->
                     <div class="flex justify-center mb-12">
                         <div class="w-24 h-1 bg-gradient-to-r from-pink-400 via-green-400 to-emerald-500 rounded-full">
                         </div>
                     </div>
 
-                    <!-- YOUTUBE -->
-                    @if ($youtubeId)
-                        <div class="mb-12">
-                            <div class="relative w-full rounded-3xl overflow-hidden shadow-xl" style="padding-top: 56.25%;">
-                                <iframe src="https://www.youtube.com/embed/{{ $youtubeId }}"
-                                    class="absolute top-0 left-0 w-full h-full"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
-                        </div>
-                    @elseif($education->link)
-                        <div class="mb-12 text-center">
-                            <a href="{{ $education->link }}" target="_blank"
-                                class="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-2xl shadow-md transition hover:scale-105 transform">
-                                🔗 Buka Link Sumber
-                            </a>
-                        </div>
-                    @endif
 
-                    <!-- CONTENT -->
+
+                    <!-- DESCRIPTION -->
                     <div
                         class="prose prose-lg max-w-none 
-                    prose-headings:text-green-700
-                    prose-a:text-green-600
-                    prose-strong:text-gray-800
-                    prose-li:marker:text-green-500
-                    prose-p:leading-relaxed text-justify">
+prose-headings:text-green-700
+prose-a:text-green-600
+prose-strong:text-gray-800
+prose-li:marker:text-green-500
+prose-p:leading-relaxed text-justify">
 
-                        {!! $education->description !!}
+                        {!! $desc !!}
+
                     </div>
 
                 </div>
