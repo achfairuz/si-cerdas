@@ -31,10 +31,12 @@ class AppServiceProvider extends ServiceProvider
 
             $educationCategories = Category::with('educations')
                 ->whereHas('educations')
+                ->orderBy('created_at', 'desc')
                 ->get();
 
             $recipeCategories = Category::with('recipes')
                 ->whereHas('recipes')
+                ->orderBy('created_at', 'desc')
                 ->get();
 
             $view->with([

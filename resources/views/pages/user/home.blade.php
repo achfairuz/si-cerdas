@@ -169,13 +169,13 @@
                             <!-- DROPDOWN -->
                             <div>
                                 <label class="font-semibold text-gray-700 flex items-center gap-2">
-                                    🎂 LILA standar sesuai usia (cm)
+                                    🎂 Usia (tahun)
                                 </label>
 
                                 <select x-model="usia" @change="pilihDariDropdown()"
                                     class="w-full mt-2 p-4 rounded-xl border focus:ring-2 focus:ring-emerald-400">
 
-                                    <option value="">-- Pilih Standar LILA --</option>
+                                    <option value="">-- Pilih Usia --</option>
 
                                     <template x-for="item in daftarStandar" :key="item.min">
                                         <option :value="item.min" x-text="item.label + ' Tahun'">
