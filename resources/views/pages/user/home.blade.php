@@ -169,7 +169,7 @@
                             <!-- DROPDOWN -->
                             <div>
                                 <label class="font-semibold text-gray-700 flex items-center gap-2">
-                                    🎂 Usia (tahun)
+                                    🎂 Pilih Usia (tahun)
                                 </label>
 
                                 <select x-model="usia" @change="pilihDariDropdown()"
