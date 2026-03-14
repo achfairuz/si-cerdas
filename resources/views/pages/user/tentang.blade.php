@@ -117,13 +117,14 @@
                                 </h3>
 
                                 <p class="text-gray-600 text-sm mb-4">
-                                    Buku “E-Book Protein Booster” akan segera tersedia untuk diunduh dalam versi digital.
+                                    Buku “E-Book Protein Booster” sudah tersedia untuk diunduh dalam versi digital.
                                 </p>
 
-                                <button disabled
-                                    class="inline-block bg-gray-300 text-gray-600 px-5 py-2 rounded-xl font-medium cursor-not-allowed">
-                                    📖 Segera Hadir
-                                </button>
+                                <a href="https://drive.google.com/drive/folders/1vzMxUZQYuHNk_xtG3arQC1D2LkqGr-aL"
+                                    target="_blank"
+                                    class="inline-block bg-gray-700 text-white px-5 py-2 rounded-xl font-medium hover:bg-gray-800 transition">
+                                    📖 Download E-Book
+                                </a>
                             </div>
 
                         </div>
