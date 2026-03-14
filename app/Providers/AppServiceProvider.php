@@ -29,14 +29,16 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useTailwind();
         View::composer('*', function ($view) {
 
-            $educationCategories = Category::with('educations')
+            $educationCategories = Category::with(['educations' => function ($query) {
+                $query->orderBy('created_at', 'asc');
+            }])
                 ->whereHas('educations')
-                ->orderBy('created_at', 'desc')
+                ->orderBy('created_at', 'asc')
                 ->get();
 
             $recipeCategories = Category::with('recipes')
                 ->whereHas('recipes')
-                ->orderBy('created_at', 'desc')
+                ->orderBy('created_at', 'asc')
                 ->get();
 
             $view->with([

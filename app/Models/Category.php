@@ -21,6 +21,6 @@ class Category extends Model
     }
     public function educations()
     {
-        return $this->hasMany(Education::class);
+        return $this->hasMany(Education::class)->orderBy('created_at', 'asc');
     }
 }

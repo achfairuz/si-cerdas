@@ -85,46 +85,71 @@
                     </div>
 
                     <!-- Download -->
+                    <!-- Download -->
                     <div>
-                        <h2 class="text-xl font-bold text-green-700 mb-4">
+                        <h2 class="text-xl font-bold text-green-700 mb-6 flex items-center gap-2">
                             📲 Download Aplikasi & Buku
                         </h2>
 
                         <div class="grid md:grid-cols-2 gap-6">
 
                             <!-- Download Aplikasi -->
-                            <div class="bg-green-50 p-6 rounded-2xl border border-green-200 shadow-sm">
-                                <h3 class="font-semibold text-green-700 text-lg mb-2">
-                                    Aplikasi Edukasi Gizi
-                                </h3>
+                            <div
+                                class="bg-green-50 p-7 rounded-2xl border border-green-200 shadow-sm hover:shadow-md transition">
 
-                                <p class="text-gray-600 text-sm mb-4">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div
+                                        class="w-10 h-10 bg-green-600 text-white flex items-center justify-center rounded-lg text-lg">
+                                        📱
+                                    </div>
+
+                                    <h3 class="font-semibold text-green-700 text-lg">
+                                        Aplikasi Edukasi Gizi
+                                    </h3>
+                                </div>
+
+                                <p class="text-gray-600 text-sm mb-6 leading-relaxed">
                                     Unduh aplikasi edukasi pencegahan stunting (Maternia) berbasis teknologi untuk
-                                    mendapatkan informasi gizi dan fitur interaktif berupa Augmented Reality (AR)
+                                    mendapatkan informasi gizi dan fitur interaktif berupa Augmented Reality (AR).
                                 </p>
 
                                 <a href="https://drive.google.com/drive/folders/1GYhcPDp8mcdn2XGUoqwYDZcBN354BKB7"
                                     target="_blank"
-                                    class="inline-block bg-green-600 text-white px-5 py-2 rounded-xl font-medium hover:bg-green-700 transition">
+                                    class="inline-flex items-center gap-2 bg-green-600 text-white px-5 py-2.5 rounded-xl font-medium hover:bg-green-700 transition">
+
                                     ⬇ Download Aplikasi
                                 </a>
+
                             </div>
 
                             <!-- Download Buku -->
-                            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200 shadow-sm">
-                                <h3 class="font-semibold text-gray-700 text-lg mb-2">
-                                    E-Book Protein Booster
-                                </h3>
+                            <div
+                                class="bg-blue-50 p-7 rounded-2xl border border-blue-200 shadow-sm hover:shadow-md transition">
 
-                                <p class="text-gray-600 text-sm mb-4">
-                                    Buku “E-Book Protein Booster” sudah tersedia untuk diunduh dalam versi digital.
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div
+                                        class="w-10 h-10 bg-blue-600 text-white flex items-center justify-center rounded-lg text-lg">
+                                        📚
+                                    </div>
+
+                                    <h3 class="font-semibold text-blue-700 text-lg">
+                                        E-Book Protein Booster
+                                    </h3>
+                                </div>
+
+                                <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                                    Buku “E-Book Protein Booster” berisi berbagai resep tinggi protein berbahan
+                                    pangan lokal untuk membantu meningkatkan asupan gizi balita dalam pencegahan
+                                    stunting.
                                 </p>
 
                                 <a href="https://drive.google.com/drive/folders/1vzMxUZQYuHNk_xtG3arQC1D2LkqGr-aL"
                                     target="_blank"
-                                    class="inline-block bg-gray-700 text-white px-5 py-2 rounded-xl font-medium hover:bg-gray-800 transition">
+                                    class="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-xl font-medium hover:bg-blue-700 transition">
+
                                     📖 Download E-Book
                                 </a>
+
                             </div>
 
                         </div>

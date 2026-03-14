@@ -24,13 +24,16 @@ class ConsumebleController extends Controller
                 $query->whereHas('recipes');
             }
 
-            $categories = $query->get();
+            $categories = $query
+                ->orderBy('created_at', 'asc')
+                ->get();
 
             return response()->json([
                 'status' => 'success',
                 'data' => $categories
             ]);
         } catch (\Throwable $th) {
+
             return response()->json([
                 'status' => 'error',
                 'message' => $th->getMessage()
@@ -41,80 +44,83 @@ class ConsumebleController extends Controller
     public function educationByCategory(int $categoryId)
     {
         try {
-            $educations = Education::where('category_id', $categoryId)->paginate(10);
+
+            $educations = Education::where('category_id', $categoryId)
+                ->orderBy('created_at', 'asc')
+                ->paginate(10);
 
             return response()->json([
                 'status' => 'success',
                 'data' => $educations
             ]);
         } catch (\Throwable $th) {
+
             return response()->json([
                 'status' => 'error',
                 'message' => $th->getMessage()
-            ]);
+            ], 500);
         }
     }
 
     public function detailEducation(string $slug)
     {
         try {
-            $education = Education::where('slug', $slug)->first();
-            if (!$education) {
-                return response()->json([
-                    'status' => 'error',
-                    'message' => 'Education not found'
-                ]);
-            }
+
+            $education = Education::where('slug', $slug)
+                ->firstOrFail();
+
             return response()->json([
                 'status' => 'success',
                 'data' => $education
-
             ]);
         } catch (\Throwable $th) {
+
             return response()->json([
                 'status' => 'error',
-                'message' => $th->getMessage()
-            ]);
+                'message' => 'Education not found'
+            ], 404);
         }
     }
 
-    public function RecipeByCategory(int $categoryId)
+    public function recipeByCategory(int $categoryId)
     {
         try {
-            $recipes = Recipe::where('category_id', $categoryId)->paginate(10);
+
+            $recipes = Recipe::where('category_id', $categoryId)
+                ->orderBy('created_at', 'asc')
+                ->paginate(10);
 
             return response()->json([
                 'status' => 'success',
                 'data' => $recipes
             ]);
         } catch (\Throwable $th) {
+
             return response()->json([
                 'status' => 'error',
                 'message' => $th->getMessage()
-            ]);
+            ], 500);
         }
     }
 
     public function detailRecipe(string $slug)
     {
         try {
-            $recipe = Recipe::where('slug', $slug)->with('category', 'ingredients', 'steps', 'nutritions')->first();
-            if (!$recipe) {
-                return response()->json([
-                    'status' => 'error',
-                    'message' => 'Recipe not found'
-                ]);
-            }
+
+            $recipe = Recipe::where('slug', $slug)
+                ->with('category', 'ingredients', 'steps', 'nutritions')
+                ->firstOrFail();
+
             return response()->json([
                 'status' => 'success',
                 'data' => $recipe
-
             ]);
         } catch (\Throwable $th) {
+
             return response()->json([
                 'status' => 'error',
-                'message' => $th->getMessage()
-            ]);
+                'message' => 'Recipe not found'
+            ], 404);
         }
     }
 }
