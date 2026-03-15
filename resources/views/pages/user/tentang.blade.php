@@ -113,7 +113,7 @@
                                     mendapatkan informasi gizi dan fitur interaktif berupa Augmented Reality (AR).
                                 </p>
 
-                                <a href="https://drive.google.com/drive/folders/1GYhcPDp8mcdn2XGUoqwYDZcBN354BKB7"
+                                <a href="https://drive.google.com/drive/folders/1GYhcPDp8mcdn2XGUoqwYDZcBN354BKB7" 
                                     target="_blank"
                                     class="inline-flex items-center gap-2 bg-green-600 text-white px-5 py-2.5 rounded-xl font-medium hover:bg-green-700 transition">
 
