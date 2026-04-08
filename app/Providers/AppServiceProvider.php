@@ -36,7 +36,9 @@ class AppServiceProvider extends ServiceProvider
                 ->orderBy('created_at', 'asc')
                 ->get();
 
-            $recipeCategories = Category::with('recipes')
+            $recipeCategories = Category::with(['recipes' => function ($query) {
+                $query->orderBy('created_at', 'asc');
+            }])
                 ->whereHas('recipes')
                 ->orderBy('created_at', 'asc')
                 ->get();
