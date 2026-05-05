@@ -72,7 +72,7 @@
                     </svg>
                 </button>
 
-               <div class="flex flex-col items-center text-left">
+               <div class="flex flex-col items-center md:items:start lg:item-start text-left">
                         <h1 class="text-lg md:text-2xl font-extrabold bg-gradient-to-r from-green-600 to-emerald-400 bg-clip-text text-transparent font-['Nanito']">
                             Si Cerdas
                         </h1>
