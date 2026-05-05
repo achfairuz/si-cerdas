@@ -14,7 +14,7 @@
 
 <body class="min-h-screen bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
 
-    <div class="bg-white shadow-2xl rounded-3xl w-full max-w-md p-10">
+    <div class="bg-white shadow-2xl rounded-3xl w-full max-w-md p-10 mx-4">
 
         <!-- Logo -->
         <div class="text-center mb-8">

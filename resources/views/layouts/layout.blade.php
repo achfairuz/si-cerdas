@@ -17,7 +17,7 @@
     <meta property="og:type" content="website">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+<link href="https://fonts.googleapis.com/css2?family=Nanito:wght@600;800&display=swap" rel="stylesheet">
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
@@ -71,9 +71,14 @@
                     </svg>
                 </button>
 
-                <h1 class="text-xl font-bold text-green-700">
-                    Si Cerdas
-                </h1>
+                 <div class="flex flex-col items-center text-left">
+                        <h1 class="text-lg md:text-2xl font-extrabold bg-gradient-to-r from-green-600 to-emerald-400 bg-clip-text text-transparent font-['Nanito']">
+                            Si Cerdas
+                        </h1>
+                        <p class="text-xs md:text-sm text-gray-600">
+                            Aplikasi tepat ibu hamil untuk cegah stunting
+                        </p>
+                    </div>
 
 
                 <img src="{{ asset('assets/images/logo.png') }}" class="w-12" alt="Logo">
