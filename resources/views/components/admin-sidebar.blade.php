@@ -7,7 +7,7 @@
 
         <!-- Logo -->
         <div class="p-6 border-b border-gray-800">
-            <h2 class="text-2xl font-bold text-green-400">
+            <h1 class="text-2xl md:text-2xl font-extrabold bg-gradient-to-r from-green-600 to-emerald-400 bg-clip-text text-transparent font-['Nanito']">
                 Si Cerdas
             </h2>
             <p class="text-xs text-gray-400">Admin Panel</p>
