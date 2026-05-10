@@ -73,7 +73,7 @@
                 </button>
 
                <div class="flex flex-col items-center md:items:start lg:items-start text-left">
-                        <h1 class="text-lg md:text-2xl font-extrabold bg-gradient-to-r from-green-600 to-emerald-400 bg-clip-text text-transparent font-['Nanito']">
+                        <h1 class="text-lg md:text-2xl font-extrabold bg-gradient-to-r from-green-600 to-emerald-400 bg-clip-text text-transparent font-['LazyDog']">
                             Si Cerdas
                         </h1>
                         <p class="text-xs md:text-sm text-gray-600">
@@ -82,7 +82,7 @@
                     </div>
 
 
-                <img src="{{ asset('assets/images/logo.png') }}" class="w-12" alt="Logo">
+                <img src="{{ asset('assets/images/logo.png') }}" class="w-16" alt="Logo">
 
 
             </div>
