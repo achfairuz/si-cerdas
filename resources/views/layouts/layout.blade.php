@@ -15,6 +15,7 @@
     <meta property="og:description" content="Platform edukasi kesehatan dan resep sehat untuk keluarga.">
     <meta property="og:image" content="{{ asset('assets/images/logo.png') }}">
     <meta property="og:type" content="website">
+    <link href="https://fonts.googleapis.com/css2?family=Nanito:wght@600;800&display=swap" rel="stylesheet">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 <link href="https://fonts.googleapis.com/css2?family=Nanito:wght@600;800&display=swap" rel="stylesheet">
@@ -71,8 +72,8 @@
                     </svg>
                 </button>
 
-                 <div class="flex flex-col items-center text-left">
-                        <h1 class="text-lg md:text-2xl font-extrabold bg-gradient-to-r from-green-600 to-emerald-400 bg-clip-text text-transparent font-['Nanito']">
+               <div class="flex flex-col items-center md:items:start lg:items-start text-left">
+                        <h1 class="text-xl md:text-3xl font-extrabold bg-gradient-to-r from-green-600 to-emerald-400 bg-clip-text text-transparent font-['LazyDog']">
                             Si Cerdas
                         </h1>
                         <p class="text-xs md:text-sm text-gray-600">
@@ -81,7 +82,7 @@
                     </div>
 
 
-                <img src="{{ asset('assets/images/logo.png') }}" class="w-12" alt="Logo">
+                <img src="{{ asset('assets/images/logo.png') }}" class="w-20" alt="Logo">
 
 
             </div>
