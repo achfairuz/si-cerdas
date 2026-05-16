@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanito:wght@600;800&display=swap" rel="stylesheet">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+<link href="https://fonts.googleapis.com/css2?family=Nanito:wght@600;800&display=swap" rel="stylesheet">
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 

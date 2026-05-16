@@ -8,6 +8,7 @@
 
     @vite('resources/css/app.css')
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 
 <body class="bg-gray-100 font-sans">
@@ -38,9 +39,14 @@
                     </button>
 
                     <!-- Title -->
-                    <h1 class="text-xl font-bold text-green-700">
-                        Si Cerdas
-                    </h1>
+                    <div class="flex flex-col items-start text-left">
+                        <h1 class="text-lg md:text-2xl font-extrabold text-green-700 leading-tight tracking-wide font-[Nunito]">
+                            Si Cerdas
+                        </h1>
+                        <p class="text-xs md:text-sm text-gray-600">
+                            Aplikasi tepat ibu hamil untuk cegah stunting
+                        </p>
+                    </div>
 
                     <!-- Logo -->
                     <div class="bg-green-200 px-4 py-2 rounded-xl text-green-800 font-semibold">
